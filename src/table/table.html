@@ -1,0 +1,98 @@
+<div class="app-table table-striped">
+  <table class="table mb-0" [ngClass]="{ 'table-hover': showHover }">
+    <!-- Option to hide table head -->
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">
+          {{column.label}}
+          <i (click)="onHeaderSelect(column.field)" *ngIf="column.field" [class]="'text-grey fa fa-caret-' + (column.field && column.field.reverse ? 'down' : 'up') + ' pl-2 c-pointer'" aria-hidden="true"></i>
+        </th>
+        <th *ngIf="actions && actions.length > 0">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngIf="rows && rows.length < 1">
+        <td colspan="666">{{empty}}</td>
+      </tr>
+
+      <tr *ngFor="let row of rows" (click)="onSelect(row)" class="c-pointer">
+        <td *ngFor="let column of columns">
+            <ng-template [ngIf]="!column.input">
+              <a *ngIf='column.routerLink' [routerLink]="column.routerLink(row)">
+                <div>
+                  <span *ngIf="!column.html" [ngClass]="column.class ? column.class(row) : ''">
+                      <s *ngIf="row.checked">{{column.text(row)}}</s>
+                      <ng-template [ngIf]="!row.checked">
+                        {{column.text(row)}}
+                      </ng-template>
+                  </span>
+                </div>
+                <div>
+                  <span *ngIf="column.html" [innerHTML]="column.html(row)"></span>
+                </div>
+              </a>
+              <a *ngIf='!column.routerLink'>
+                <span *ngIf="!column.html" [ngClass]="column.class ? column.class(row) : ''">
+                    <s *ngIf="row.checked">{{column.text(row)}}</s>
+                    <ng-template [ngIf]="!row.checked">
+                      {{column.text(row)}}
+                    </ng-template>
+                  </span>
+                  <span *ngIf="column.html" [innerHTML]="column.html(row)"></span>
+              </a>
+            </ng-template>
+
+            <ng-template [ngIf]="column.input">
+              <ng-container [ngSwitch]="column.input.type">
+                <ng-template [ngSwitchCase]="'text'">
+                  <input class="form-control"
+                        type="text"
+                        [(ngModel)]="row[column.input.model]"
+                        [placeholder]="column.input.placeholder"
+                        (click)="$event.stopPropagation()"
+                        [name]="column.input.model">
+                </ng-template>
+
+                <ng-template [ngSwitchCase]="'checkbox'">
+                  <input type="checkbox"
+                        class="form-control"
+                        [checked]="row[column.input.model]"
+                        [name]="column.input.model"
+                        (click)="$event.stopPropagation()"
+                        (change)="updateRowCheckbox(row)">
+                </ng-template>
+
+                <ng-template [ngSwitchCase]="'selectList'">
+                  <select [(ngModel)]="row[column.input.model]" [name]="column.input.model" (click)="$event.stopPropagation()" (change)="updateSelectList(row)" class="form-control">
+                    <option *ngFor="let val of processInputValues(column.input.values, row) " [ngValue]="val.key">{{val.value}}</option>
+                  </select>
+                </ng-template>
+              </ng-container>
+            </ng-template>
+        </td>
+
+        <td *ngIf="actions && actions.length > 0" class="text-center">
+          <ng-template ngFor [ngForOf]="actions" let-action>
+            <span *ngIf="!action.isHidden || !(action.isHidden(row))">
+              <ng-template [ngIf]="action.isIconFont">
+                <button type="button" class="btn"
+                        [ngClass]="action.class ? action.class(row) : ''"
+                        (click)="action.do($event, row)">
+                  <i class="fa {{ action.label }}" aria-hidden="true"></i>
+                </button>
+              </ng-template>
+              <ng-template [ngIf]="!action.isIconFont">
+                <button type="button" class="btn"
+                        [ngClass]="action.class ? action.class(row) : ''"
+                        (click)="action.do($event, row)">
+                  {{ action.label }}
+                </button>
+              </ng-template>
+            </span>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

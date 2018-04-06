@@ -1,0 +1,19 @@
+@import '../../../../variables.scss';
+
+.premium-card {
+    height: 100% !important;
+}
+
+.card {
+  border-width: 2px !important;
+}
+
+.border-tertiary {
+  border-color: $brand-tertiary;
+}
+
+.card-block {
+  &.premium-panel-body {
+    padding: 0;
+  }
+}

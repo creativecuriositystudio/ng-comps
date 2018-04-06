@@ -1,0 +1,28 @@
+<h1 class="mb-3 font-weight-bold text-primary-dark">{{ title }}</h1>
+
+<ng-content></ng-content>
+
+<!-- Loop through all the panels to be displayed -->
+<ng-template ngFor [ngForOf]="panels" let-panel>
+  <app-panel-form [data]="data" [panel]="panel" [errors]="errors"></app-panel-form>
+</ng-template>
+
+<!-- Error message -->
+<app-info-panel *ngIf="error" theme="warning">
+  <p class="font-weight-bold">{{ error }}</p>
+  <p class="mb-1" *ngIf="constraintErrors.length > 0">The following fields are not valid:</p>
+  <p class="mb-1" *ngFor="let constraint of constraintErrors" class="constraint-error">
+    {{ constraint.field }}:
+    <span class="ml-2" *ngFor="let message of constraint.message">{{ message }}</span>
+  </p>
+</app-info-panel>
+
+<!-- Action section -->
+<div class="row mt-3 mb-3">
+  <div class="col-12 text-right">
+    <button *ngIf="!hideCancel" [disabled]="isSaving" (click)="cancel()" class="btn btn-grey">{{ cancelLabel || 'Cancel' }}</button>
+    <button *ngIf="!hideSave" [disabled]="isSaving" (click)="save()" class="btn {{ saveBtnClass || 'btn-tertiary' }}">
+      {{ saveLabel || 'Save' }}
+    </button>
+  </div>
+</div>

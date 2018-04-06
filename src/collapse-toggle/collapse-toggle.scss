@@ -1,0 +1,18 @@
+@import '../../../../variables.scss';
+
+.app-collapse-toggle {
+  display: inline-block;
+  border: 1px solid $brand-quinary;
+  width: 1rem;
+  height: 1rem;
+
+  .fa {
+    color: $brand-quinary;
+    vertical-align: top;
+    padding: 0.05rem 0.175rem;
+  }
+
+  .fa.fa-caret-up {
+    padding: 0.03rem 0.21rem;
+  }
+}

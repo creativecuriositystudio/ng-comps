@@ -1,0 +1,9 @@
+@import '../../../../../variables.scss';
+
+.nav-item {
+  color: black;
+
+  &:hover {
+    color: $brand-primary;
+  }
+}

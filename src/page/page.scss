@@ -1,0 +1,10 @@
+@import '../../../../mixins.scss';
+
+@include host-flex();
+@include host-flex-fill();
+
+:host > /deep/ .app-page-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}

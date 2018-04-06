@@ -1,0 +1,70 @@
+{
+  "name": "@creativecuriosityau/ng-comps",
+  "version": "0.1.0",
+  "description": "Collection of common Angular TS components",
+  "keywords": [
+    "typescript",
+    "angular",
+    "components"
+  ],
+  "repository": "https://github.com/creativecuriositystudio/ng-comps",
+  "homepage": "https://github.com/creativecuriositystudio/ng-comps",
+  "bugs": "https://github.com/creativecuriositystudio/ng-comps/issues",
+  "license": "MIT",
+  "contributors": [
+    "Daniel Cavanagh <danielcavanagh85@gmail.com>",
+    "Sorakthun Ly <ly.sorakthun@gmail.com>"
+  ],
+  "dependencies": {
+    "@types/lodash": "^4.14.106",
+    "@types/validator": "^9.4.0",
+    "lodash": "^4.17.5",
+    "moment": "^2.22.0",
+    "typescript": "^2.8.1",
+    "validator": "^9.4.1"
+  },
+  "peerDependencies": {
+    "@angular/common": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/forms": "^5.0.0",
+    "@angular/platform-browser": "^5.0.0",
+    "@angular/router": "^5.0.0",
+    "@types/node": ">= 7.0.0",
+    "modelsafe": "^2.0.0",
+    "rxjs": "^5.0.0",
+    "zone.js": "^0.8.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/forms": "^5.0.0",
+    "@angular/platform-browser": "^5.0.0",
+    "@angular/router": "^5.0.0",
+    "@types/chai": "^3.4.35",
+    "@types/chai-as-promised": "0.0.31",
+    "@types/mocha": "^2.2.33",
+    "@types/node": ">= 7.0.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^7.0.0",
+    "gh-pages": "^1.0.0",
+    "husky": "^0.13.2",
+    "jsverify": "^0.8.2",
+    "mocha": "^3.2.0",
+    "modelsafe": "^2.0.0",
+    "rxjs": "^5.0.0",
+    "tslint": "^5.0.0",
+    "tslint-config-ccs": "^0.5.1",
+    "zone.js": "^0.8.0"
+  },
+  "scripts": {
+    "prepush": "npm run lint && npm test",
+    "prepublish": "npm run build",
+    "build": "tsc",
+    "test": "mocha --opts mocha.opts",
+    "test:auto": "mocha --opts mocha.opts --watch",
+    "lint": "tslint --format stylish --project tsconfig.json",
+    "clean": "rm -rf dist"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts"
+}

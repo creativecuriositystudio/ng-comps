@@ -1,0 +1,91 @@
+<div class="app-list">
+  <h1 class="mb-4 font-weight-bold text-primary-dark">{{ title }}</h1>
+  <div class="app-page-title mt-2">
+    <div class="row">
+      <div class="col-md-6">
+        <select (change)="refresh(itemsPerPage)" [(ngModel)]="itemsPerPage" class="w-auto flexible-form">
+          <option *ngFor="let num of rowsPerPage" [ngValue]="num">{{num}}</option>
+        </select>
+        <span>records per page</span>
+      </div>
+
+      <div class="col-md-6 text-right">
+        <input [ngModel]="searchText" (ngModelChange)="search($event)" type="text" [placeholder]="searchPlaceholder || 'Name'" class="flexible-form">
+        <button class="btn btn-white "><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+        <div class="btn-group">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-white" id="filterDropdown" ngbDropdownToggle>
+              <i class="fa fa-star" aria-hidden="true"></i> Filter
+            </button>
+            <div ngbDropdownMenu aria-labelledby="filterDropdown">
+               <button class="dropdown-item">Action - 1</button>
+               <button class="dropdown-item">Another Action</button>
+               <button class="dropdown-item">Something else is here</button>
+             </div>
+          </div>
+        </div>
+        <button *ngIf="addPath" class="btn btn-primary" [routerLink]="addPath">{{ addLabel }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-page-content">
+    <div class="app-list-container py-4">
+      <ng-content></ng-content>
+
+      <div class="app-list-body bg-white py-3 px-2">
+        <app-table [rows]="data"
+                   [columns]="columns"
+                   [actions]="rowActions"
+                   (rowCheckboxChange)="updateRowCheckbox($event)"
+                   (sortHeader)="onHeaderSelect($event)"
+                   (select)="onSelect($event)">
+        </app-table>
+
+        <div *ngIf="showPagination" class="row mt-3">
+          <div class="offset-6 col-6">
+            <ul class="pagination pull-right">
+              <li (click)="prevPage()" class="page-item rounded-left c-pointer">
+                <a class="page-link">&laquo;</a>
+              </li>
+
+              <ng-template [ngIf]="pages.length < 5">
+                <li (click)="selectPage(num)" class="page-item c-pointer" *ngFor="let num of pages" [ngClass]="{ active: num === currentPage }">
+                  <a class="page-link">{{num}}</a>
+                </li>
+              </ng-template>
+
+              <ng-template [ngIf]="pages.length >= 5">
+                <li (click)="selectPage(1)" class="page-item c-pointer" *ngIf="numPages !== 1 && currentPage !== 1">
+                  <a class="page-link">1</a>
+                </li>
+
+                <li (click)="selectPage(currentPage - 1)" class="page-item c-pointer" *ngIf="currentPage > 2">
+                  <a class="page-link">{{ currentPage - 1 }}</a>
+                </li>
+
+                <li (click)="selectPage(currentPage)" class="page-item c-pointer active">
+                  <a class="page-link">{{ currentPage }}</a>
+                </li>
+
+                <li (click)="selectPage(currentPage + 1)" class="page-item c-pointer" *ngIf="numPages - currentPage > 1">
+                  <a class="page-link">{{ currentPage + 1 }}</a>
+                </li>
+
+                <li (click)="selectPage(numPages)" class="page-item c-pointer rounded-right" *ngIf="numPages - currentPage > 0">
+                  <a class="page-link">{{ numPages }}</a>
+                </li>
+              </ng-template>
+
+              <li (click)="nextPage()" class="page-item c-pointer">
+                <a class="page-link">&raquo;</a>
+              </li>
+            </ul>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

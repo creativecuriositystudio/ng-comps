@@ -1,0 +1,14 @@
+import { Component, Input } from '@angular/core';
+
+/**
+ * Provides the base functionality and layout for a general pagefold.
+ */
+@Component({
+  selector: 'app-page',
+  templateUrl: 'page.html',
+  styleUrls: ['page.scss']
+})
+export class BasePageComponent {
+  /** Title of the page */
+  @Input() title: string;
+}

@@ -1,0 +1,79 @@
+<div class="row">
+  <!-- List of selected items -->
+  <div class="col-12" *ngIf="rawSelectedItems && rawSelectedItems.length > 0">
+    <div class="container pl-0 pr-0 pb-1">
+      <button *ngFor="let item of rawSelectedItems"
+              class="btn btn-light-grey mr-1 mb-1"
+              (click)="remove(item)">
+        {{ mapValue(item, labelMap) }} <span *ngIf="!isReadOnly" class="pl-1 fa fa-remove"></span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Search input and display area -->
+  <div class="col-12">
+    <div class="row">
+      <!-- The search input -->
+      <div class="col-12">
+        <div class="multi-select">
+          <input #searchInput
+                 type="text"
+                 class="form-control" 
+                 [ngModel]="text"
+                 [readonly]="isReadOnly"
+                 (ngModelChange)="search($event)"
+                 (focus)="onFocus()"
+                 [placeholder]="placeholder || 'Search...'"
+                 [name]="name">
+        </div>
+      </div>
+      
+      <!-- List display area -->
+      <div class="col-12">
+        <div class="row pl-3 pr-3">
+          <div class="col-12 pl-0 pr-0">
+            <!-- Result list to display after search is complete -->
+            <div class="col-12 pl-0 pr-0 display-list" *ngIf="showResultList">
+              <div class="container pt-2 pb-2 pl-0 pr-0 result-list">
+                <p *ngFor="let item of resultItems" class="mb-0 pt-2 pb-2 pl-4 pr-4 result-item" (click)="add(item, searchInput)">{{ mapValue(item, labelMap) }}</p>
+              </div>
+            </div>
+
+            <!-- Any default list display -->
+            <div class="col-12 pl-0 pr-0 display-list" *ngIf="showDefaultList && hasDefaultList">
+              <div class="container pl-0 pr-0 pb-4 default-group-list">
+                <!-- The header for the default list -->
+                <header *ngIf="defaultListText" class="p-3 bg-primary text-white font-weight-bold">
+                  {{ defaultListText }}
+                </header>
+
+                <!-- The list of groups to display -->
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-{{ column ? (12 / column) : 4 }} mt-4" *ngFor="let group of defaultListGroups">
+                      <h6 class="font-weight-bold">{{ group.label }}</h6>
+                      <p *ngFor="let item of group.values" class="mb-1 c-pointer group-item" (click)="add(item, searchInput)">{{ mapValue(item, labelMap) }}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- List of ungrouped items to display by default -->
+                <ng-template [ngIf]="showUngroupedList">
+                  <div class="container">
+                    <hr *ngIf="defaultListGroups && defaultListGroups.length > 0" class="default-list-divider">
+                    <div class="pt-2 pb-2 mb-1" *ngIf="!defaultListGroups || defaultListGroups.length === 0"></div>
+                    <div class="row">
+                      <div class="col-md-4" *ngFor="let item of defaultListItems">
+                        <p class="mb-1 c-pointer group-item" (click)="add(item, searchInput)">{{ mapValue(item, labelMap) }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>

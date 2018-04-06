@@ -1,0 +1,20 @@
+@import '../../../../mixins';
+
+@include host-flex();
+@include host-flex-fill();
+
+.app-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .app-list-container {
+    flex: 1;
+  }
+}
+
+.flexible-form {
+  height: calc(2.07125rem + 2px);
+}
+
+
