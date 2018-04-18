@@ -1,0 +1,1 @@
+{"version":3,"file":"page.js","sourceRoot":"","sources":["../../../src/components/page/page.ts"],"names":[],"mappings":";;;;;;;;AAAA,wCAAiD;AAEjD;;GAEG;AAMH,IAAa,iBAAiB,GAA9B;CAGC,CAAA;AADU;IAAR,YAAK,EAAE;gDAAe;AAFZ,iBAAiB;IAL7B,gBAAS,CAAC;QACT,QAAQ,EAAE,UAAU;QACpB,WAAW,EAAE,WAAW;QACxB,SAAS,EAAE,CAAC,WAAW,CAAC;KACzB,CAAC;GACW,iBAAiB,CAG7B;AAHY,8CAAiB"}

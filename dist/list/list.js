@@ -16,7 +16,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const rxjs_1 = require("rxjs");
-const pagination_1 = require("../../../helpers/pagination");
+const pagination_1 = require("../helpers/pagination");
 const _ = require("lodash");
 /**
  * Provides the base functionality and layout for a list screen.
