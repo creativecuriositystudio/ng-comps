@@ -4,7 +4,7 @@ import { Model, ModelConstructor } from 'modelsafe';
 import { Location } from '@angular/common';
 
 /** A panel in the read page */
-export interface BasePanel<T> {
+export interface BaseReadPanel<T> {
   /** Label of the read panel */
   label: string;
 

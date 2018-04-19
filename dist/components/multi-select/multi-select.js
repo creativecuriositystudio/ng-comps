@@ -38,10 +38,6 @@ let MultiSelectComponent = MultiSelectComponent_1 = class MultiSelectComponent {
             this.showResultList = this.resultItems.length > 0 ? true : false;
         }));
     }
-    /* tslint:disable:use-life-cycle-interface */
-    /** Prepare values if there is any */
-    ngOnInit() {
-    }
     /** Register a change callback. */
     registerOnChange(fn) {
         this.onChangeCallback = fn;

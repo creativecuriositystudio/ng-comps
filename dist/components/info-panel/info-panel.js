@@ -9,9 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 /** Provide an accordion component */
 let InfoPanelComponent = class InfoPanelComponent {
-    constructor() { }
-    /** If no icons are provided, set a default set */
-    ngOnInit() { }
 };
 __decorate([
     core_1.Input()

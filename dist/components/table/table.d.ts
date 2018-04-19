@@ -30,7 +30,7 @@ export interface ColumnInput {
     /** Model for two-way data binding */
     model: string;
     /** Values for the select-list if any */
-    values?: any[] | Promise<any[]> | ((any: any) => any[]) | ((any: any) => Promise<any[]>);
+    values?: any[] | Promise<any[]> | ((data: any) => (any[] | Promise<any[]>));
 }
 /** A column dedicated for an action each row performs */
 export interface BaseTableAction<T> {
@@ -86,5 +86,5 @@ export declare class BaseTableComponent {
     /** Mark every row as selected */
     selectAll(): void;
     /** Processes the input values */
-    processInputValues(values: any[] | ((any: any) => any[]), row: any): any[];
+    processInputValues(values: any[] | ((data: any) => any[]), row: any): any[];
 }

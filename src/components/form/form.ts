@@ -6,7 +6,7 @@ import { DefaultListGroup } from '../multi-select/multi-select';
 import * as _ from 'lodash';
 
 /** A panel in the form page */
-export interface BasePanel<T> {
+export interface BaseFormPanel<T> {
   /** Label of the panel */
   label: string;
 
@@ -118,7 +118,7 @@ export class BaseFormComponent implements OnInit {
   @Input() title: string;
 
   /** The panels to display. */
-  @Input() panels: BasePanel<any>[];
+  @Input() panels: BaseFormPanel<any>[];
 
   /** The model displayed in the form. */
   @Input() model: ModelConstructor<any>;

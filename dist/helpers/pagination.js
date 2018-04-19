@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class PaginationHelper {
     /** Save the number selected by the user */
     static setItemsPerPage(count) {
-        window.localStorage.setItem(PaginationHelper.itemsPerPage, count.toString());
+        localStorage.setItem(PaginationHelper.itemsPerPage, count.toString());
     }
     /** Retrieve the number of items the user previously selected */
     static getItemsPerPage() {
-        return +window.localStorage.getItem(PaginationHelper.itemsPerPage);
+        return +localStorage.getItem(PaginationHelper.itemsPerPage);
     }
 }
 /** The localStorage key for saving items per page selected */

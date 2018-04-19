@@ -15,7 +15,6 @@ export declare class PageHeaderComponent implements OnInit {
     background: 'primary' | 'secondary' | 'tertiary' | 'quarternary';
     /** Class to define the height of the card if neccessary - currently being used for premium-cards */
     specificStyle: string;
-    constructor();
     /** If no icons are provided, set a default set */
     ngOnInit(): void;
 }

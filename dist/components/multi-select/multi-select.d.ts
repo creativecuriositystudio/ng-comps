@@ -55,8 +55,6 @@ export declare class MultiSelectComponent<T> implements ControlValueAccessor {
     valueMap: string | ((val: any) => any);
     /** Construct this component */
     constructor(elementRef: ElementRef);
-    /** Prepare values if there is any */
-    ngOnInit(): void;
     /** Register a change callback. */
     registerOnChange(fn: any): void;
     /** Ignore onTouched */

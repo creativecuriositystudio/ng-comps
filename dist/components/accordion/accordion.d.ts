@@ -12,7 +12,6 @@ export declare class AccordionComponent implements OnInit {
     isCollapsed: boolean;
     /** Togglable font-awesone icon strings provided as per ToggleIcon interface */
     icons?: ToggleIcon;
-    constructor();
     /** If no icons are provided, set a default set */
     ngOnInit(): void;
 }
