@@ -38,12 +38,12 @@ import * as pipes from './pipes';
     pipes.CentsPipe
   ],
 })
-export class CompsModule {
+export class AppModule {
 
   /** Pass the module as a whole */
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: CompsModule
+      ngModule: AppModule
     };
   }
 }
