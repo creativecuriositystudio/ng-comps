@@ -8,7 +8,9 @@ const router_1 = require("@angular/router");
 const ng2_date_picker_1 = require("ng2-date-picker");
 const components = require("./components");
 const pipes = require("./pipes");
+/** Bootstrap the module */
 class CompsModule {
+    /** Pass the module as a whole */
     static forRoot() {
         return {
             ngModule: CompsModule
