@@ -1,6 +1,6 @@
 {
   "name": "@creativecuriosityau/ng-comps",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Collection of common Angular TS components",
   "keywords": [
     "typescript",
@@ -20,6 +20,7 @@
     "@types/validator": "^9.4.0",
     "lodash": "^4.17.5",
     "moment": "^2.22.0",
+    "ng2-date-picker": "git+https://github.com/sorakthunly/angular-datepicker-bin.git",
     "typescript": "^2.8.1",
     "validator": "^9.4.1"
   },
@@ -57,7 +58,6 @@
     "jsverify": "^0.8.2",
     "mocha": "^3.2.0",
     "modelsafe": "^2.0.0",
-    "ng2-date-picker": "git+https://github.com/sorakthunly/angular-datepicker-bin.git",
     "rxjs": "^5.0.0",
     "tslint": "^5.0.0",
     "tslint-config-ccs": "^0.6.2",
