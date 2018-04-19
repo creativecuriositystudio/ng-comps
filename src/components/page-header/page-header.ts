@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 /** Provide an accordion component */
 @Component({
-  selector: 'page-header',
+  selector: 'arvo-page-header',
   templateUrl: 'page-header.html',
   styleUrls: ['page-header.scss']
 })

@@ -1,6 +1,6 @@
 <h1 class="mb-3 font-weight-bold text-primary-dark">{{ title }}</h1>
 
-<app-info-panel *ngFor="let ip of infoPanels" [theme]="ip.theme || 'info'">{{ ip.message }}</app-info-panel>
+<arvo-info-panel *ngFor="let ip of infoPanels" [theme]="ip.theme || 'info'">{{ ip.message }}</arvo-info-panel>
 
 <button class="btn btn-grey font-weight-bold mb-3" (click)="back()">Back</button>
 <ng-container *ngIf="!readOnly">

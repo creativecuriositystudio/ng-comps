@@ -68,7 +68,7 @@ export interface BaseTableAction<T> {
  * Provides the base functionality and layout for a generic table.
  */
 @Component({
-  selector: 'app-table',
+  selector: 'arvo-table',
   templateUrl: 'table.html',
   styleUrls: ['table.scss']
 })

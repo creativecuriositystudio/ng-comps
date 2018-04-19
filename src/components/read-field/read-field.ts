@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
  * Provides the base functionality and layout of a field on a read.
  */
 @Component({
-  selector: 'app-read-field',
+  selector: 'arvo-read-field',
   templateUrl: 'read-field.html'
 })
 export class BaseReadFieldComponent {

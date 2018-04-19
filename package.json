@@ -1,6 +1,6 @@
 {
   "name": "@creativecuriosityau/ng-comps",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Collection of common Angular TS components",
   "keywords": [
     "typescript",
@@ -64,6 +64,7 @@
     "zone.js": "^0.8.0"
   },
   "scripts": {
+    "start": "npm run build",
     "prepush": "npm run lint",
     "prepublish": "npm run build",
     "build": "ngc",

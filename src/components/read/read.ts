@@ -61,7 +61,7 @@ export interface BaseReadField<T> {
  * Provides the base functionality and layout for a read screen.
  */
 @Component({
-  selector: 'app-read',
+  selector: 'arvo-read',
   templateUrl: 'read.html',
   styleUrls: ['read.scss']
 })

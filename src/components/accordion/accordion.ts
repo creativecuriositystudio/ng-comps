@@ -8,7 +8,7 @@ export interface ToggleIcon {
 
 /** Provide an accordion component */
 @Component({
-  selector: 'app-accordion',
+  selector: 'arvo-accordion',
   templateUrl: 'accordion.html',
   styleUrls: ['accordion.scss']
 })

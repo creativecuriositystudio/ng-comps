@@ -13,7 +13,7 @@ export interface DefaultListGroup<T> {
 
 /** Provides a multi-select component */
 @Component({
-  selector: 'app-multi-select',
+  selector: 'arvo-multi-select',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => MultiSelectComponent),

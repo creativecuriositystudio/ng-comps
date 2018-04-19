@@ -26,7 +26,7 @@ const TypeCheckers = [
  * Provides the base functionality and layout of a field on a form.
  */
 @Component({
-  selector: 'app-form-field',
+  selector: 'arvo-form-field',
   templateUrl: 'form-field.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,

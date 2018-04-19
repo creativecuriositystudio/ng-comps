@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 /**  Provides a collapsable component to any other UI component */
 @Component({
-  selector: 'app-collapse-toggle',
+  selector: 'arvo-collapse-toggle',
   templateUrl: 'collapse-toggle.html',
   styleUrls: ['collapse-toggle.scss']
 })

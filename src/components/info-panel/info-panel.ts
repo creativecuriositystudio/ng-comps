@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 /** Provide an accordion component */
 @Component({
-  selector: 'app-info-panel',
+  selector: 'arvo-info-panel',
   templateUrl: 'info-panel.html',
   styleUrls: ['info-panel.scss']
 })

@@ -61,7 +61,7 @@ export interface BaseAction {
  * Provides the base functionality and layout for a list screen.
  */
 @Component({
-  selector: 'app-list',
+  selector: 'arvo-list',
   templateUrl: 'list.html',
   styleUrls: ['list.scss']
 })

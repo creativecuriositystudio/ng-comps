@@ -5,7 +5,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
  * Provides a yes/no select box.
  */
 @Component({
-  selector: 'app-select-bool',
+  selector: 'arvo-select-bool',
   templateUrl: 'select-bool.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,

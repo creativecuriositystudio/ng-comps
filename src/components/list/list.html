@@ -1,6 +1,6 @@
-<div class="app-list">
+<div class="arvo-list">
   <h1 class="mb-4 font-weight-bold text-primary-dark">{{ title }}</h1>
-  <div class="app-page-title mt-2">
+  <div class="arvo-page-title mt-2">
     <div class="row">
       <div class="col-md-6">
         <select (change)="refresh(itemsPerPage)" [(ngModel)]="itemsPerPage" class="w-auto flexible-form">
@@ -29,18 +29,18 @@
     </div>
   </div>
 
-  <div class="app-page-content">
-    <div class="app-list-container py-4">
+  <div class="arvo-page-content">
+    <div class="arvo-list-container py-4">
       <ng-content></ng-content>
 
-      <div class="app-list-body bg-white py-3 px-2">
-        <app-table [rows]="data"
+      <div class="arvo-list-body bg-white py-3 px-2">
+        <arvo-table [rows]="data"
                    [columns]="columns"
                    [actions]="rowActions"
                    (rowCheckboxChange)="updateRowCheckbox($event)"
                    (sortHeader)="onHeaderSelect($event)"
                    (select)="onSelect($event)">
-        </app-table>
+        </arvo-table>
 
         <div *ngIf="showPagination" class="row mt-3">
           <div class="offset-6 col-6">

@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
  * Provides the base functionality and layout for a general pagefold.
  */
 @Component({
-  selector: 'app-page',
+  selector: 'arvo-page',
   templateUrl: 'page.html',
   styleUrls: ['page.scss']
 })

@@ -109,7 +109,7 @@ export interface BaseFormField<T> {
  * Provides the base functionality and layout for a form screen.
  */
 @Component({
-  selector: 'app-form',
+  selector: 'arvo-form',
   templateUrl: 'form.html',
   styleUrls: ['form.scss']
 })
