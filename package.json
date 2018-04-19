@@ -1,6 +1,6 @@
 {
   "name": "@creativecuriosityau/ng-comps",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Collection of common Angular TS components",
   "keywords": [
     "typescript",
@@ -59,7 +59,7 @@
   "scripts": {
     "prepush": "npm run lint",
     "prepublish": "npm run build",
-    "build": "tsc",
+    "build": "ngc",
     "test": "mocha --opts mocha.opts",
     "test:auto": "mocha --opts mocha.opts --watch",
     "lint": "tslint --format stylish --project tsconfig.json",

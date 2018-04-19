@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ModelConstructor } from 'modelsafe';
 import { DefaultListGroup } from '../multi-select/multi-select';
 /** A panel in the form page */
-export interface BasePanel<T> {
+export interface BaseFormPanel<T> {
     /** Label of the panel */
     label: string;
     /** List of form fields within a panel */
@@ -78,7 +78,7 @@ export declare class BaseFormComponent implements OnInit {
     /** The title of the read screen. */
     title: string;
     /** The panels to display. */
-    panels: BasePanel<any>[];
+    panels: BaseFormPanel<any>[];
     /** The model displayed in the form. */
     model: ModelConstructor<any>;
     /** The model instance data. */
