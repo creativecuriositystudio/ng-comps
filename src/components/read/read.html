@@ -9,7 +9,4 @@
 
 <button *ngFor="let button of extraActions" class="{{ button.class }}" (click)="button.do()">{{ button.label }}</button>
 
-<ng-template ngFor [ngForOf]="panels" let-panel>
-  <app-panel-read *ngIf="panel.showIf ? panel.showIf(data) : true" [panel]="panel" [data]="data"></app-panel-read>
-  <ng-content></ng-content>
-</ng-template>
+<ng-content></ng-content>

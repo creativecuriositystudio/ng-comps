@@ -2,11 +2,6 @@
 
 <ng-content></ng-content>
 
-<!-- Loop through all the panels to be displayed -->
-<ng-template ngFor [ngForOf]="panels" let-panel>
-  <app-panel-form [data]="data" [panel]="panel" [errors]="errors"></app-panel-form>
-</ng-template>
-
 <!-- Error message -->
 <app-info-panel *ngIf="error" theme="warning">
   <p class="font-weight-bold">{{ error }}</p>

@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 
 /** Provide an accordion component */
 @Component({
-  selector: 'app-page-header',
-  templateUrl: 'app-page-header.html',
-  styleUrls: ['app-page-header.scss']
+  selector: 'page-header',
+  templateUrl: 'page-header.html',
+  styleUrls: ['page-header.scss']
 })
 export class PageHeaderComponent implements OnInit {
   /** Title of the accordion */

@@ -1,23 +1,15 @@
-@import '../../../../variables.scss';
-
 .card {
   border-width: 2px !important;
 }
 
 .info {
-  border-color: $brand-quaternary;
-  color: $brand-quaternary;
   background-color: rgba(244, 177, 39, 0.1);
 }
 
 .success {
-  border-color: $brand-tertiary;
-  color: $brand-tertiary;
   background-color: rgba(85, 187, 68, 0.1);
 }
 
 .warning {
-  border-color: $brand-quinary;
-  color: $brand-quinary;
   background-color: rgba(225, 40, 63, 0.1);
 }

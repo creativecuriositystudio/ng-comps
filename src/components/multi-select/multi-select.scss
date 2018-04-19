@@ -1,4 +1,4 @@
-@import '../../../../variables.scss';
+@import '../../../node_modules/bootstrap/scss/_variables.scss';
 
 .multi-select {
   position: relative;
@@ -11,7 +11,7 @@
     width: 100% !important;
     margin: 0;
     padding: 0;
-    border: 1px solid $input-border-color;
+    border: 1px solid $brand-primary;
   }
 }
 
