@@ -5,6 +5,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
+    "rootDir": "src",
     "outDir": "dist",
     "experimentalDecorators": true,
     "noImplicitAny": true,
@@ -13,10 +14,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true
-  },
-  "exclude": [
-    "dist",
-    "node_modules",
-    "src/**/*.ngfactory.ts"
-  ],
+  }
 }
