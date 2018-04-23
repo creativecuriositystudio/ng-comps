@@ -7,7 +7,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { PercentPipe } from '@angular/common';
 import { DefaultListGroup } from '../multi-select/multi-select';
 
-export interface BaseFormFieldMap {
+export interface FormFieldMap {
   label?: string | ((val: any) => string);
   value?: string | ((val: any) => any);
 }
@@ -27,14 +27,14 @@ const TypeCheckers = [
  */
 @Component({
   selector: 'arvo-form-field',
-  templateUrl: 'form-field.html',
+  templateUrl: './form-field.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => BaseFormFieldComponent),
+    useExisting: forwardRef(() => FormFieldComponent),
     multi: true
   }],
 })
-export class BaseFormFieldComponent implements OnInit, OnChanges, ControlValueAccessor {
+export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccessor {
   /** Emits the value of the selected item on user select */
   @Output() onSelect?: EventEmitter<any> = new EventEmitter();
 
@@ -87,7 +87,7 @@ export class BaseFormFieldComponent implements OnInit, OnChanges, ControlValueAc
   @Input() values?: any[] | Promise<any[]>;
 
   /** The label and value map for select values, if required */
-  @Input() valuesMap?: BaseFormFieldMap = {};
+  @Input() valuesMap?: FormFieldMap = {};
 
   /** The error message to display, if any */
   @Input() errors?: { message: string }[];

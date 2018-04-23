@@ -5,10 +5,10 @@ import { Component, Input } from '@angular/core';
  */
 @Component({
   selector: 'arvo-page',
-  templateUrl: 'page.html',
-  styleUrls: ['page.scss']
+  templateUrl: './page.html',
+  styleUrls: ['./page.scss']
 })
-export class BasePageComponent {
+export class PageComponent {
   /** Title of the page */
   @Input() title: string;
 }

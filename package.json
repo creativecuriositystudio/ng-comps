@@ -1,6 +1,6 @@
 {
   "name": "@creativecuriosityau/ng-comps",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Collection of common Angular TS components",
   "keywords": [
     "typescript",
@@ -16,16 +16,16 @@
     "Sorakthun Ly <ly.sorakthun@gmail.com>"
   ],
   "dependencies": {
-    "@types/fs-extra": "^5.0.2",
     "@types/lodash": "^4.14.106",
     "@types/validator": "^9.4.0",
-    "copy": "^0.3.1",
-    "fs-extra": "^5.0.0",
+    "jquery": "^3.3.1",
     "lodash": "^4.17.5",
     "moment": "^2.22.0",
     "ng2-date-picker": "git+https://github.com/sorakthunly/angular-datepicker-bin.git",
+    "ng2-inline-template": "^0.1.1",
+    "popper.js": "^1.14.3",
     "ts-node": "^6.0.0",
-    "typescript": "^2.8.1",
+    "typescript": "^2.6.2",
     "validator": "^9.4.1"
   },
   "peerDependencies": {
@@ -71,10 +71,11 @@
     "start": "npm run build",
     "prepush": "npm run lint",
     "prepublish": "npm run build",
-    "build": "ngc && ts-node ./bin/copy-templates.ts",
+    "build": "npm run inline-resources && ngc",
+    "inline-resources": "ng2inline --outDir=inlined \"src/**/*.ts\"",
     "test": "mocha --opts mocha.opts",
     "test:auto": "mocha --opts mocha.opts --watch",
-    "lint": "tslint --format stylish --project tsconfig.json",
+    "lint": "tslint --format stylish --project tsconfig.tslint.json",
     "clean": "rm -rf dist"
   },
   "main": "dist/index.js",

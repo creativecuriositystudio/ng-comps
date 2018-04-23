@@ -19,8 +19,8 @@ export interface DefaultListGroup<T> {
     useExisting: forwardRef(() => MultiSelectComponent),
     multi: true
   }],
-  templateUrl: 'multi-select.html',
-  styleUrls: ['multi-select.scss']
+  templateUrl: './multi-select.html',
+  styleUrls: ['./multi-select.scss']
 })
 export class MultiSelectComponent<T> implements ControlValueAccessor {
   /** The input name */

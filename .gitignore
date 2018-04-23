@@ -27,6 +27,7 @@ coverage
 bower_components
 
 # Built files
+inlined
 dist
 
 # node-waf configuration

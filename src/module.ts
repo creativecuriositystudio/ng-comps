@@ -7,7 +7,7 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 import * as components from './components';
 import * as pipes from './pipes';
 
-/** Bootstrap the module */
+/** Module containing all exported elements */
 @NgModule({
   imports: [
     CommonModule,
@@ -20,29 +20,50 @@ import * as pipes from './pipes';
   declarations: [
     components.AccordionComponent,
     components.CollapseToggleComponent,
-    components.BaseFormComponent,
-    components.BaseFormFieldComponent,
+    components.FormComponent,
+    components.FormFieldComponent,
     components.InfoPanelComponent,
-    components.BaseListComponent,
+    components.ListComponent,
     components.MultiSelectComponent,
-    components.BasePageComponent,
+    components.PageComponent,
     components.PageHeaderComponent,
     components.PanelComponent,
-    components.BaseReadComponent,
-    components.BaseReadFieldComponent,
+    components.ReadComponent,
+    components.ReadFieldComponent,
     components.SelectBoolComponent,
-    components.BaseTableComponent,
+    components.TableComponent,
+
+    pipes.BooleanPipe,
+    pipes.CapitalizePipe,
+    pipes.CentsPipe
+  ],
+
+  exports: [
+    components.AccordionComponent,
+    components.CollapseToggleComponent,
+    components.FormComponent,
+    components.FormFieldComponent,
+    components.InfoPanelComponent,
+    components.ListComponent,
+    components.MultiSelectComponent,
+    components.PageComponent,
+    components.PageHeaderComponent,
+    components.PanelComponent,
+    components.ReadComponent,
+    components.ReadFieldComponent,
+    components.SelectBoolComponent,
+    components.TableComponent,
 
     pipes.BooleanPipe,
     pipes.CapitalizePipe,
     pipes.CentsPipe
   ],
 })
-export class ArvoNgModule {
+export class Module {
   /** Pass the module as a whole */
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: ArvoNgModule
+      ngModule: Module
     };
   }
 }

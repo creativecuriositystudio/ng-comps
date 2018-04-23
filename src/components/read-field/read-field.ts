@@ -5,9 +5,9 @@ import { Component, Input } from '@angular/core';
  */
 @Component({
   selector: 'arvo-read-field',
-  templateUrl: 'read-field.html'
+  templateUrl: './read-field.html'
 })
-export class BaseReadFieldComponent {
+export class ReadFieldComponent {
   /** The label of the read field. */
   @Input() label: string;
 

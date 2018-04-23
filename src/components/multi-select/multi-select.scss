@@ -1,17 +1,15 @@
-@import '../../../node_modules/bootstrap/scss/_variables.scss';
-
 .multi-select {
   position: relative;
 
   .selected-items {
-    border: 1px solid $input-border-color;
+    border: 1px solid black;
   }
 
   /deep/ ngb-typeahead-window.dropdown-menu {
     width: 100% !important;
     margin: 0;
     padding: 0;
-    border: 1px solid $brand-primary;
+    border: 1px solid black;
   }
 }
 
@@ -27,7 +25,7 @@
 
 .result-item {
   &:hover {
-    background-color: $brand-primary;
+    background-color: #111;
     color: white;
     cursor: pointer;
   }
@@ -43,6 +41,6 @@
 
 .group-item {
   &:hover {
-    color: $brand-primary;
+    color: black;
   }
 }

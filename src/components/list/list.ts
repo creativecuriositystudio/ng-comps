@@ -4,7 +4,7 @@ import { Model, ModelConstructor } from 'modelsafe';
 import { PaginationHelper } from '../../helpers/pagination';
 import * as _ from 'lodash';
 
-import { BaseTableColumn, BaseTableAction, SortField } from '../table/table';
+import { TableColumn, TableAction, SortField } from '../table/table';
 
 /** Helper interface for data emitted to the outter component on page change */
 export interface ChangeResponse {
@@ -46,7 +46,7 @@ export interface SelectAction {
 }
 
 /** Action to perform for the whole list */
-export interface BaseAction {
+export interface Action {
   /** The label of the action, in HTML. */
   label: string;
 
@@ -62,10 +62,10 @@ export interface BaseAction {
  */
 @Component({
   selector: 'arvo-list',
-  templateUrl: 'list.html',
-  styleUrls: ['list.scss']
+  templateUrl: './list.html',
+  styleUrls: ['./list.scss']
 })
-export class BaseListComponent implements OnInit, OnChanges {
+export class ListComponent implements OnInit, OnChanges {
   /** The title of the list screen. */
   @Input() title: string;
 
@@ -82,13 +82,13 @@ export class BaseListComponent implements OnInit, OnChanges {
   @Input() searchAttr: string;
 
   /** The list actions. */
-  @Input() actions: BaseAction[] = [];
+  @Input() actions: Action[] = [];
 
   /** The columns to display. */
-  @Input() columns: BaseTableColumn<Model>[] = [];
+  @Input() columns: TableColumn<Model>[] = [];
 
   /** The actions to provide for each row. */
-  @Input() rowActions: BaseTableAction<any>[] = [];
+  @Input() rowActions: TableAction<any>[] = [];
 
   /** The path segments for the add button. */
   @Input() addPath: string | any[];

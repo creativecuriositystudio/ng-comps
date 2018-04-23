@@ -4,12 +4,12 @@ import { Model, ModelConstructor } from 'modelsafe';
 import { Location } from '@angular/common';
 
 /** A panel in the read page */
-export interface BaseReadPanel<T> {
+export interface ReadPanel<T> {
   /** Label of the read panel */
   label: string;
 
   /** Fields to display */
-  fields: BaseReadField<T>[];
+  fields: ReadField<T>[];
 
   /** Conditional display statement */
   showIf?(instance?: T): any;
@@ -37,7 +37,7 @@ export interface ReadAction {
 }
 
 /** A column in the table. */
-export interface BaseReadField<T> {
+export interface ReadField<T> {
   /** The label. */
   label: string;
 
@@ -62,15 +62,15 @@ export interface BaseReadField<T> {
  */
 @Component({
   selector: 'arvo-read',
-  templateUrl: 'read.html',
-  styleUrls: ['read.scss']
+  templateUrl: './read.html',
+  styleUrls: ['./read.scss']
 })
-export class BaseReadComponent implements OnInit {
+export class ReadComponent implements OnInit {
   /** The title of the read screen. */
   @Input() title: string;
 
   /** The panels to display. */
-  @Input() panels: BaseReadField<Model>[];
+  @Input() panels: ReadField<Model>[];
 
   /** The model displayed in the list. */
   @Input() model: ModelConstructor<Model>;

@@ -6,7 +6,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
  */
 @Component({
   selector: 'arvo-select-bool',
-  templateUrl: 'select-bool.html',
+  templateUrl: './select-bool.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => SelectBoolComponent),

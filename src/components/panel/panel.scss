@@ -1,5 +1,3 @@
-@import '../../../node_modules/bootstrap/scss/_variables.scss';
-
 .premium-card {
     height: 100% !important;
 }
@@ -9,7 +7,7 @@
 }
 
 .border-tertiary {
-  border-color: $brand-tertiary;
+  border-color: #111;
 }
 
 .card-block {

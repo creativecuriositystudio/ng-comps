@@ -3,8 +3,8 @@ import { Component, Input } from '@angular/core';
 /** Provide an accordion component */
 @Component({
   selector: 'arvo-panel',
-  templateUrl: 'panel.html',
-  styleUrls: ['panel.scss']
+  templateUrl: './panel.html',
+  styleUrls: ['./panel.scss']
 })
 export class PanelComponent {
   /** Title of the accordion */

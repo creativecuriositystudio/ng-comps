@@ -9,8 +9,8 @@ export interface ToggleIcon {
 /** Provide an accordion component */
 @Component({
   selector: 'arvo-accordion',
-  templateUrl: 'accordion.html',
-  styleUrls: ['accordion.scss']
+  templateUrl: './accordion.html',
+  styleUrls: ['./accordion.scss']
 })
 export class AccordionComponent implements OnInit {
   /** Title of the accordion */

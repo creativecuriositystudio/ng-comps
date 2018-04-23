@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import * as _ from 'lodash';
 
 /** A column in the table. */
-export interface BaseTableColumn<T> {
+export interface TableColumn<T> {
   /** The label. */
   label: string;
 
@@ -47,7 +47,7 @@ export interface ColumnInput {
 }
 
 /** A column dedicated for an action each row performs */
-export interface BaseTableAction<T> {
+export interface TableAction<T> {
   /** The label of the action. */
   label: string;
 
@@ -69,10 +69,10 @@ export interface BaseTableAction<T> {
  */
 @Component({
   selector: 'arvo-table',
-  templateUrl: 'table.html',
-  styleUrls: ['table.scss']
+  templateUrl: './table.html',
+  styleUrls: ['./table.scss']
 })
-export class BaseTableComponent {
+export class TableComponent {
   /** Whether the table should have hoverable rows. */
   @Input() showHover = false;
 
@@ -86,10 +86,10 @@ export class BaseTableComponent {
   @Input() isEditing: boolean;
 
   /** The columns for the table. */
-  @Input() columns: BaseTableColumn<any>[] = [];
+  @Input() columns: TableColumn<any>[] = [];
 
   /** The action each columns perform. */
-  @Input() actions: BaseTableAction<any>[] = [];
+  @Input() actions: TableAction<any>[] = [];
 
   /** Whether the checkbox action should be performed */
   @Input() checkboxAction: (_: any) => Promise<void>;

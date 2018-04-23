@@ -6,19 +6,19 @@ import { DefaultListGroup } from '../multi-select/multi-select';
 import * as _ from 'lodash';
 
 /** A panel in the form page */
-export interface BaseFormPanel<T> {
+export interface FormPanel<T> {
   /** Label of the panel */
   label: string;
 
   /** List of form fields within a panel */
-  fields: BaseFormField<T>[];
+  fields: FormField<T>[];
 
   /** Whether the panel is hidden */
   hidden?: boolean;
 }
 
 /** A column in the table. */
-export interface BaseFormField<T> {
+export interface FormField<T> {
   /** The label. */
   label?: string;
 
@@ -110,15 +110,15 @@ export interface BaseFormField<T> {
  */
 @Component({
   selector: 'arvo-form',
-  templateUrl: 'form.html',
-  styleUrls: ['form.scss']
+  templateUrl: './form.html',
+  styleUrls: ['./form.scss']
 })
-export class BaseFormComponent implements OnInit {
+export class FormComponent implements OnInit {
   /** The title of the read screen. */
   @Input() title: string;
 
   /** The panels to display. */
-  @Input() panels: BaseFormPanel<any>[];
+  @Input() panels: FormPanel<any>[];
 
   /** The model displayed in the form. */
   @Input() model: ModelConstructor<any>;
