@@ -1,6 +1,6 @@
 {
   "name": "@creativecuriosityau/ng-comps",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Collection of common Angular TS components",
   "keywords": [
     "typescript",
@@ -16,11 +16,15 @@
     "Sorakthun Ly <ly.sorakthun@gmail.com>"
   ],
   "dependencies": {
+    "@types/fs-extra": "^5.0.2",
     "@types/lodash": "^4.14.106",
     "@types/validator": "^9.4.0",
+    "copy": "^0.3.1",
+    "fs-extra": "^5.0.0",
     "lodash": "^4.17.5",
     "moment": "^2.22.0",
     "ng2-date-picker": "git+https://github.com/sorakthunly/angular-datepicker-bin.git",
+    "ts-node": "^6.0.0",
     "typescript": "^2.8.1",
     "validator": "^9.4.1"
   },
@@ -67,7 +71,7 @@
     "start": "npm run build",
     "prepush": "npm run lint",
     "prepublish": "npm run build",
-    "build": "ngc",
+    "build": "ngc && ts-node ./bin/copy-templates.ts",
     "test": "mocha --opts mocha.opts",
     "test:auto": "mocha --opts mocha.opts --watch",
     "lint": "tslint --format stylish --project tsconfig.json",

@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": ["es6", "es2015", "dom"],
+    "lib": ["es6", "ES2015", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
-    "rootDir": "src",
-    "outDir": "dist",
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "declaration": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src"]
 }
