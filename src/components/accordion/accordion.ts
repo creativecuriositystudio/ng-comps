@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CssSelector } from '@angular/core/src/render3/interfaces';
 
 /** Interface for providing togglable icons */
 export interface ToggleIcon {
@@ -21,6 +22,12 @@ export class AccordionComponent implements OnInit {
 
   /** Togglable font-awesone icon strings provided as per ToggleIcon interface */
   @Input() icons?: ToggleIcon;
+
+  /** Boolean to set whether the title should be uppercase */
+  @Input() uppercase: boolean;
+
+  /** Custom class passed through to the component */
+  @Input() customClass: object;
 
   /** If no icons are provided, set a default set */
   ngOnInit() {

@@ -1,4 +1,4 @@
-<div (click)="isCollapsed = !isCollapsed" class="row c-pointer mt-4">
+<div (click)="isCollapsed = !isCollapsed" class="row c-pointer mt-4" [ngStyle]="customClass">
   <div class="col-8">
     <h2>{{ title | uppercase }}</h2>
   </div>
