@@ -1,6 +1,7 @@
 <div (click)="isCollapsed = !isCollapsed" class="row c-pointer mt-4" [ngStyle]="customClass">
   <div class="col-8">
-    <h2>{{ title | uppercase }}</h2>
+    <ng-container *ngIf="uppercase"><h2>{{ title | uppercase }}</h2></ng-container>
+    <ng-container *ngIf="!uppercase"><h2>{{ title }}</h2></ng-container>
   </div>
   <div class="col-4 text-right">
     <i class="fa {{ isCollapsed ? icons.hide : icons.show }}" aria-hidden="true"></i>

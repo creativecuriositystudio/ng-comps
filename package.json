@@ -1,6 +1,6 @@
 {
   "name": "@creativecuriosityau/ng-comps",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Collection of common Angular TS components",
   "keywords": [
     "typescript",
