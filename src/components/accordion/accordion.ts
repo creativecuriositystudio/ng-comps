@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CssSelector } from '@angular/core/src/render3/interfaces';
 
 /** Interface for providing togglable icons */
 export interface ToggleIcon {
