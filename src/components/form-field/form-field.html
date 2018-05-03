@@ -1,7 +1,7 @@
 <div class="form-group row" [ngClass]="{ 'has-danger': errors && errors.length > 0 }">
-  <label class="col-sm-{{ isWide ? '2' : '4' }} col-form-label" *ngIf="label" [class.required]="isRequired">{{label}}</label>
+  <label class="col-{{ isWide ? '2' : '4' }} col-form-label" *ngIf="label" [class.required]="isRequired">{{label}}</label>
 
-  <div class="col-sm-{{ isWide ? '10' : '8' }}" [ngSwitch]="type" [class.input-group]="prefix || affix">
+  <div class="col-{{ isWide ? '10' : '8' }}" [ngSwitch]="type" [class.input-group]="prefix || affix">
     <div *ngIf="prefix" class="input-group-addon">{{ prefix }}</div>
 
     <ng-content *ngSwitchCase="null"></ng-content>
