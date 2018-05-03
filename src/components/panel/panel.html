@@ -9,7 +9,11 @@
         <div class="col-6"><span class="h6">{{ title }}</span></div>
         <div class="col-6 font-weight-bold text-right c-pointer"
              *ngIf="collapsable">
-          {{ collapseText }}
+          <ng-container *ngIf="!hideText">{{ collapseText }}</ng-container>
+          <ng-container *ngIf="hideText">
+            <ng-container *ngIf="isCollapsed">{{ hideText }}</ng-container>
+            <ng-container *ngIf="!isCollapsed">{{ collapseText }}</ng-container>
+          </ng-container>
           <i class="fa fa-{{ isCollapsed ? 'caret-right' : 'caret-down' }} pl-4"
              aria-hidden="true"></i>
         </div>

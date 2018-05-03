@@ -19,6 +19,9 @@ export class PanelComponent {
   /** Text next to the collapse symbol */
   @Input() collapseText: string;
 
+  /** Text shown when the panel is collapsed */
+  @Input() hideText: string;
+
   /** The alignment of the panel title using bootstrap class */
   @Input() alignment: string;
 
