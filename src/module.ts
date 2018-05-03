@@ -35,7 +35,7 @@ import * as pipes from './pipes';
 
     pipes.BooleanPipe,
     pipes.CapitalizePipe,
-    pipes.CentsPipe
+    pipes.CentsPipe,
   ],
 
   exports: [
@@ -56,7 +56,7 @@ import * as pipes from './pipes';
 
     pipes.BooleanPipe,
     pipes.CapitalizePipe,
-    pipes.CentsPipe
+    pipes.CentsPipe,
   ],
 })
 export class Module {

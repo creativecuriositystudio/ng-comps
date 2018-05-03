@@ -22,9 +22,6 @@ export class PanelComponent {
   /** The alignment of the panel title using bootstrap class */
   @Input() alignment: string;
 
-  /** Class of the panel theme color */
-  @Input() theme: string;
-
   /** Extra class for panel */
   @Input() class: string;
 }

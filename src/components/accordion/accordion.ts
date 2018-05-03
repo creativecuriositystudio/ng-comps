@@ -23,10 +23,10 @@ export class AccordionComponent implements OnInit {
   @Input() icons?: ToggleIcon;
 
   /** Boolean to set whether the title should be uppercase */
-  @Input() uppercase: boolean;
+  @Input() uppercase = false;
 
   /** Custom class passed through to the component */
-  @Input() customClass: object;
+  @Input() customClass = {};
 
   /** If no icons are provided, set a default set */
   ngOnInit() {
