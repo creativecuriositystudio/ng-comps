@@ -104,10 +104,12 @@
       </select>
 
     <ng-container *ngSwitchCase="'radio-slider'">
-      <div class="btn-group btn-group-toggle form-control" ngbRadioGroup [name]="name" [(ngModel)]="value">
-        <label *ngFor="let val of values" ngbButtonLabel class="btn-primary">
-          <input ngbButton type="radio" [value]="mapValue(val, valuesMap.value)">{{ mapValue(val, valuesMap.label) }}
-        </label>
+      <div class="btn-group btn-group-toggle" ngbRadioGroup [name]="name" [(ngModel)]="value">
+        <ng-container *ngFor="let val of values">
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="mapValue(val, valuesMap.value)">{{ mapValue(val, valuesMap.label) }}
+          </label>
+        </ng-container>
       </div>
     </ng-container>
 
@@ -117,8 +119,8 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'file'">
-        <input type="file" [name]="name" id="file" [disabled]="isReadOnly" class="form-control" (change)=updateFile($event)/>
-      </ng-container>
+      <input type="file" [name]="name" id="file" [disabled]="isReadOnly" class="form-control" (change)=updateFile($event)/>
+    </ng-container>
 
     <input *ngSwitchDefault (blur)="validate()" [(ngModel)]="value" [name]="name" type="text" class="form-control" [placeholder]="placeholder || ''" [readonly]="isReadOnly">
 
