@@ -108,10 +108,10 @@
       </div>
     </ng-container>
 
-    <ng-container *ngSwitchCase="'radio-slider'">
+    <ng-container *ngSwitchCase="'toggle'">
       <div class="btn-group btn-group-toggle" ngbRadioGroup [name]="name" [(ngModel)]="value">
         <ng-container *ngFor="let val of values">
-          <label ngbButtonLabel class="btn-primary">
+          <label ngbButtonLabel class="btn-xs btn-success">
             <input ngbButton type="radio" [value]="mapValue(val, valuesMap.value)">{{ mapValue(val, valuesMap.label) }}
           </label>
         </ng-container>
