@@ -110,9 +110,9 @@
 
     <ng-container *ngSwitchCase="'toggle'">
       <div class="btn-group btn-group-toggle" ngbRadioGroup [name]="name" [(ngModel)]="value">
-        <ng-container *ngFor="let val of values">
-          <label ngbButtonLabel class="btn-xs btn-success">
-            <input ngbButton type="radio" [value]="mapValue(val, valuesMap.value)">{{ mapValue(val, valuesMap.label) }}
+        <ng-container *ngFor="let val of values; let i = index">
+          <label ngbButtonLabel class="btn-xs btn-toggle {{ i }}">
+            <input ngbButton type="radio" [value]="mapValue(val, valuesMap.value)" [disabled]="isReadOnly">{{ mapValue(val, valuesMap.label) }}
           </label>
         </ng-container>
       </div>
