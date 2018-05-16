@@ -1,9 +1,9 @@
 <div class="row">
   <!-- List of selected items -->
-  <div class="col-12" *ngIf="rawSelectedItems && rawSelectedItems.length > 0">
-    <div class="container pl-0 pr-0 pb-1">
+  <div class="col-12 selected-items-area" *ngIf="rawSelectedItems && rawSelectedItems.length > 0 && !hideSelectedItems">
+    <div class="container pl-0 pr-0 pb-1 selected-items-container">
       <button *ngFor="let item of rawSelectedItems"
-              class="btn btn-light-grey mr-1 mb-1"
+              class="btn btn-light-grey mr-1 mb-1 selected-item"
               (click)="remove(item)">
         {{ mapValue(item, labelMap) }} <span *ngIf="!isReadOnly" class="pl-1 fa fa-remove"></span>
       </button>
@@ -11,14 +11,14 @@
   </div>
   
   <!-- Search input and display area -->
-  <div class="col-12">
+  <div class="col-12 input-area">
     <div class="row">
       <!-- The search input -->
       <div class="col-12">
         <div class="multi-select">
           <input #searchInput
                  type="text"
-                 class="form-control" 
+                 class="form-control input-box" 
                  [ngModel]="text"
                  [readonly]="isReadOnly"
                  (ngModelChange)="search($event)"
@@ -34,7 +34,8 @@
           <div class="col-12 pl-0 pr-0">
             <!-- Result list to display after search is complete -->
             <div class="col-12 pl-0 pr-0 display-list" *ngIf="showResultList">
-              <div class="container pt-2 pb-2 pl-0 pr-0 result-list">
+              <div #ref><ng-content></ng-content></div>
+              <div *ngIf="ref.children.length === 0" class="container pt-2 pb-2 pl-0 pr-0 result-list">
                 <p *ngFor="let item of resultItems" class="mb-0 pt-2 pb-2 pl-4 pr-4 result-item" (click)="add(item, searchInput)">{{ mapValue(item, labelMap) }}</p>
               </div>
             </div>

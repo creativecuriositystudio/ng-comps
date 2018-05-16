@@ -1,4 +1,4 @@
-import { Component, HostListener, ElementRef, Input, forwardRef } from '@angular/core';
+import { Component, HostListener, ElementRef, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Subject } from 'rxjs';
 import 'rxjs/add/observable/fromPromise';
@@ -56,6 +56,12 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
   /** Callback for receiving the selected items when the list changes */
   public onTouchCallback: () => void;
 
+  /** Emit an event when the search is complete */
+  @Output() onSearchComplete: EventEmitter<T[]> = new EventEmitter();
+
+  /** Whether the selected  items should be hidden */
+  @Input() hideSelectedItems: boolean;
+
   /** The number of columns to display the default list */
   @Input() column: number;
 
@@ -93,6 +99,7 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
         this.resultItems = await this.typeAhead(term);
         this.showDefaultList = false;
         this.showResultList = this.resultItems.length > 0 ? true : false;
+        if (this.showResultList) this.onSearchComplete.emit(this.resultItems);
       });
   }
 
