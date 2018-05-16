@@ -60,6 +60,9 @@ export interface FormField<T> {
 
   /** START MULTI-SELECT COMPONENT FIELDS */
 
+  /** Hide  the selected items */
+  hideSelectedItems?: boolean;
+
   /** Whether there is a default list ON FOCUS */
   hasDefaultList?: boolean;
 

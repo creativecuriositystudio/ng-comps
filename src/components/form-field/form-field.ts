@@ -38,6 +38,9 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
   /** Emits the value of the selected item on user select */
   @Output() onSelect?: EventEmitter<any> = new EventEmitter();
 
+  /** Emit an event when the multi-select search is complete */
+  @Output() onSearchComplete: EventEmitter<T[]> = new EventEmitter();
+
   /** Determines what date picker window to select */
   @ViewChild('datePicker') datePickerElement: any;
 
@@ -100,6 +103,9 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
 
   /** The number of columns to display the mulit-select default list */
   @Input() column: number;
+
+  /** Hide  the selected items for multi-select */
+  @Input() hideSelectedItems: boolean;
 
   /** Whether there is a default list */
   @Input() hasDefaultList: boolean;

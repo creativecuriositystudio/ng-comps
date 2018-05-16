@@ -23,7 +23,9 @@
                       [defaultListText]="defaultListText"
                       [defaultListGroups]="defaultListGroups"
                       [defaultListItems]="defaultListItems"
+                      [hideSelectedItems]="hideSelectedItems"
                       [labelMap]="labelMap"
+                      (onSearchComplete)="onSearchComplete.emit($event)"
                       [(ngModel)]="value">
     </arvo-multi-select>
 
