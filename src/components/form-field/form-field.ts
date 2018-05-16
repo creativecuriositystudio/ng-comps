@@ -39,7 +39,7 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
   @Output() onSelect?: EventEmitter<any> = new EventEmitter();
 
   /** Emit an event when the multi-select search is complete */
-  @Output() onSearchComplete: EventEmitter<T[]> = new EventEmitter();
+  @Output() onSearchComplete: EventEmitter<any[]> = new EventEmitter();
 
   /** Determines what date picker window to select */
   @ViewChild('datePicker') datePickerElement: any;
