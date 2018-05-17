@@ -107,6 +107,9 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
   /** Hide  the selected items for multi-select */
   @Input() hideSelectedItems: boolean;
 
+  /** Whether the search result list should be hidden for multi-select */
+  @Input() hideSearchResult: boolean;
+
   /** Whether there is a default list */
   @Input() hasDefaultList: boolean;
 

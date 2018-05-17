@@ -33,7 +33,7 @@
         <div class="row pl-3 pr-3">
           <div class="col-12 pl-0 pr-0">
             <!-- Result list to display after search is complete -->
-            <div class="col-12 pl-0 pr-0 display-list" *ngIf="showResultList">
+            <div class="col-12 pl-0 pr-0 display-list" *ngIf="showResultList && !hideSearchResult">
               <div #ref><ng-content></ng-content></div>
               <div *ngIf="ref.children.length === 0" class="container pt-2 pb-2 pl-0 pr-0 result-list">
                 <p *ngFor="let item of resultItems" class="mb-0 pt-2 pb-2 pl-4 pr-4 result-item" (click)="add(item, searchInput)">{{ mapValue(item, labelMap) }}</p>

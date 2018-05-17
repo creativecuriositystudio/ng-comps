@@ -63,6 +63,9 @@ export interface FormField<T> {
   /** Hide  the selected items */
   hideSelectedItems?: boolean;
 
+  /** Whether the search result list should be hidden */
+  hideSearchResult?: boolean;
+
   /** Whether there is a default list ON FOCUS */
   hasDefaultList?: boolean;
 

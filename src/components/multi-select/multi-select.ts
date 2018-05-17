@@ -62,6 +62,9 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
   /** Whether the selected  items should be hidden */
   @Input() hideSelectedItems: boolean;
 
+  /** Whether the search result list should be hidden */
+  @Input() hideSearchResult: boolean;
+
   /** The number of columns to display the default list */
   @Input() column: number;
 
