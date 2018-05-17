@@ -111,6 +111,11 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
     this.onChangeCallback = fn;
   }
 
+  /** Clear the search text */
+  clearText() {
+    this.text = '';
+  }
+
   /** Ignore onTouched */
   registerOnTouched(fn: any) {
     this.onTouchCallback = fn;
