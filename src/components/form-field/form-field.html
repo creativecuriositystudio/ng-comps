@@ -65,7 +65,7 @@
     <textarea *ngSwitchCase="'textarea'" (blur)="validate()" [(ngModel)]="value" [name]="name" class="form-control" [readonly]="isReadOnly" [placeholder]="placeholder || ''"></textarea>
 
     <ng-container *ngSwitchCase="'date'">
-      <div class="input-group">
+      <div class="input-group d-flex align-items-center">
         <dp-date-picker 
           #datePicker
           [(ngModel)]="value"
@@ -78,12 +78,12 @@
           [disabled]="isReadOnly"
           [config]="{ format: 'DD/MM/YYYY', closeOnSelect: true, showMultipleYearsNavigation: true }"
         ></dp-date-picker> 
-        <span class="input-group-addon bg-primary border-0" (click)="openCalendar()"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+        <span class="input-group-addon bg-primary border-0 date-picker-affix" (click)="openCalendar()"><i class="fa fa-calendar" aria-hidden="true"></i></span>
       </div>
     </ng-container>
 
     <ng-container *ngSwitchCase="'daytime'">
-      <div class="input-group">
+      <div class="input-group d-flex align-items-center">
         <dp-date-picker 
           #datePicker
           [(ngModel)]="value"
@@ -97,7 +97,7 @@
           [disabled]="isReadOnly"
           [config]="{ format: 'DD/MM/YYYY HH:mm a', closeOnSelect: true, showMultipleYearsNavigation: true }"
         ></dp-date-picker> 
-        <span class="input-group-addon bg-primary border-0" (click)="openCalendar()"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+        <span class="input-group-addon bg-primary border-0 date-picker-affix" (click)="openCalendar()"><i class="fa fa-calendar" aria-hidden="true"></i></span>
       </div>
     </ng-container>
 
@@ -129,6 +129,7 @@
     <input *ngSwitchDefault (blur)="validate()" [(ngModel)]="value" [name]="name" type="text" class="form-control" [placeholder]="placeholder || ''" [readonly]="isReadOnly">
 
     <div *ngIf="affix" class="input-group-addon">{{ affix }}</div>
+    <
 
     <ng-container *ngIf="errors && errors.length > 0">
       <div class="form-control-feedback" *ngFor="let error of errors">
