@@ -44,9 +44,6 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
   /** Whether the default list should be displayed */
   showDefaultList: boolean;
 
-  /** Default placeholder */
-  placeholder: string;
-
   /** List of original selected items */
   public rawSelectedItems: T[];
 
@@ -55,6 +52,9 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
 
   /** Callback for receiving the selected items when the list changes */
   public onTouchCallback: () => void;
+
+  /** Default placeholder */
+  @Input() placeholder: string;
 
   /** Emit an event when the search is complete */
   @Output() onSearchComplete: EventEmitter<T[]> = new EventEmitter();

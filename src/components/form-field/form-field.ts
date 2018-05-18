@@ -86,6 +86,9 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
   /** Flag indicating whether the input field should be wide. */
   @Input() isWide: boolean;
 
+  /** Whether auto-validate should turn on */
+  @Input() autoValidate: boolean;
+
   /** The option values for a select box, if required */
   @Input() values?: any[] | Promise<any[]>;
 
@@ -230,6 +233,7 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
 
   /** Validate the input field */
   validate() {
+    if (!this.autoValidate) return;
     setTimeout(() => {
       this.errors = [];
 
