@@ -1,5 +1,5 @@
-<div class="form-group d-flex" [ngClass]="{ 'has-danger': errors && errors.length > 0 }">
-  <label *ngIf="label" [class.required]="isRequired">{{label}}</label>
+<div class="form-group d-flex items-align-center" [ngClass]="{ 'has-danger': errors && errors.length > 0 }">
+  <label *ngIf="label" class="mb-0" [class.required]="isRequired">{{label}}</label>
 
   <div [ngSwitch]="type" [class.input-group]="prefix || affix">
     <div *ngIf="prefix" class="input-group-addon">{{ prefix }}</div>
