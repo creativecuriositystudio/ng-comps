@@ -129,7 +129,6 @@
     <input *ngSwitchDefault (blur)="validate()" [(ngModel)]="value" [name]="name" type="text" class="form-control" [placeholder]="placeholder || ''" [readonly]="isReadOnly">
 
     <div *ngIf="affix" class="input-group-addon">{{ affix }}</div>
-    <
 
     <ng-container *ngIf="errors && errors.length > 0">
       <div class="form-control-feedback" *ngFor="let error of errors">
