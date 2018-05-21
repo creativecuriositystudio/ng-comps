@@ -31,8 +31,9 @@ export class PanelComponent {
   /** Event emitted on panel hide/open */
   @Output() collapseToggle: EventEmitter<boolean> = new EventEmitter();
 
+  /** Toggles the collapsed toggle boolean and emits event */
   toggleCollapsed() {
-    this.isCollapsed = !this.isCollapsed
+    this.isCollapsed = !this.isCollapsed;
     this.collapseToggle.emit(this.isCollapsed);
   }
 }
