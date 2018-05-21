@@ -65,40 +65,34 @@
     <textarea *ngSwitchCase="'textarea'" (blur)="validate()" [(ngModel)]="value" [name]="name" class="form-control" [readonly]="isReadOnly" [placeholder]="placeholder || ''"></textarea>
 
     <ng-container *ngSwitchCase="'date'">
-      <div class="input-group d-flex align-items-center">
-        <dp-date-picker 
-          #datePicker
-          [(ngModel)]="value"
-          [displayDate]="value"
-          (close)="validate()"
-          [name]="name"
-          [mode]="'day'"
-          [theme]="'dp-day-picker'"
-          [placeholder]="placeholder || 'dd/mm/yyyy'"
-          [disabled]="isReadOnly"
-          [config]="{ format: 'DD/MM/YYYY', closeOnSelect: true, showMultipleYearsNavigation: true }"
-        ></dp-date-picker> 
-        <span class="input-group-addon bg-primary border-0 date-picker-affix" (click)="openCalendar()"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-      </div>
+      <dp-date-picker 
+        #datePicker
+        [(ngModel)]="value"
+        [displayDate]="value"
+        (close)="validate()"
+        [name]="name"
+        [mode]="'day'"
+        [theme]="'dp-day-picker'"
+        [placeholder]="placeholder || 'dd/mm/yyyy'"
+        [disabled]="isReadOnly"
+        [config]="{ format: 'DD/MM/YYYY', closeOnSelect: true, showMultipleYearsNavigation: true }"
+      ></dp-date-picker> 
     </ng-container>
 
     <ng-container *ngSwitchCase="'daytime'">
-      <div class="input-group d-flex align-items-center">
-        <dp-date-picker 
-          #datePicker
-          [(ngModel)]="value"
-          [displayDate]="value"
-          (close)="validate()"
-          (onBlur)="validate($event)"
-          [name]="name"
-          [mode]="'daytime'"
-          [theme]="'dp-day-picker'"
-          [placeholder]="placeholder || 'dd/mm/yyyy hh:mm a'"
-          [disabled]="isReadOnly"
-          [config]="{ format: 'DD/MM/YYYY HH:mm a', closeOnSelect: true, showMultipleYearsNavigation: true }"
-        ></dp-date-picker> 
-        <span class="input-group-addon bg-primary border-0 date-picker-affix" (click)="openCalendar()"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-      </div>
+      <dp-date-picker 
+        #datePicker
+        [(ngModel)]="value"
+        [displayDate]="value"
+        (close)="validate()"
+        (onBlur)="validate($event)"
+        [name]="name"
+        [mode]="'daytime'"
+        [theme]="'dp-day-picker'"
+        [placeholder]="placeholder || 'dd/mm/yyyy hh:mm a'"
+        [disabled]="isReadOnly"
+        [config]="{ format: 'DD/MM/YYYY HH:mm a', closeOnSelect: true, showMultipleYearsNavigation: true }"
+      ></dp-date-picker> 
     </ng-container>
 
     <ng-container *ngSwitchCase="'select'">
@@ -129,6 +123,8 @@
     <input *ngSwitchDefault (blur)="validate()" [(ngModel)]="value" [name]="name" type="text" class="form-control" [placeholder]="placeholder || ''" [readonly]="isReadOnly">
 
     <div *ngIf="affix" class="input-group-addon">{{ affix }}</div>
+
+    <div *ngIf="type === 'date' || type === 'daytime'" class="input-group-addon" (click)="openCalendar()"><i class="fa fa-calendar"></i></div>
 
     <ng-container *ngIf="errors && errors.length > 0">
       <div class="form-control-feedback" *ngFor="let error of errors">
