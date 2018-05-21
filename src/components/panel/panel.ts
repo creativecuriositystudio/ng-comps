@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 /** Provide an accordion component */
 @Component({
@@ -27,4 +27,12 @@ export class PanelComponent {
 
   /** Extra class for panel */
   @Input() class: string;
+
+  /** Event emitted on panel hide/open */
+  @Output() collapseToggle: EventEmitter<boolean> = new EventEmitter();
+
+  toggleCollapsed() {
+    this.isCollapsed = !this.isCollapsed
+    this.collapseToggle.emit(this.isCollapsed);
+  }
 }
