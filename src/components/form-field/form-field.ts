@@ -128,6 +128,9 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
   /** The list items that don't belong to any groups to show by default */
   @Input() defaultListItems: any[];
 
+  /** Whether the values list contains fontawesome icon codes */
+  @Input() valuesAreIcons?: boolean;
+
   /** The output type of the value */
   @Input() outputType?: 'string' | 'true';
 

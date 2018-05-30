@@ -110,7 +110,8 @@
       <div class="btn-group btn-group-toggle" ngbRadioGroup [name]="name" [(ngModel)]="value">
         <ng-container *ngFor="let val of values; let i = index">
           <label ngbButtonLabel class="btn-xs btn-toggle toggle-{{ i }}">
-            <input ngbButton type="radio" [value]="mapValue(val, valuesMap.value)" [disabled]="isReadOnly">{{ mapValue(val, valuesMap.label) }}
+            <input ngbButton type="radio" [value]="mapValue(val, valuesMap.value)" [disabled]="isReadOnly">
+              {{ !valuesAreIcons ? mapValue(val, valuesMap.label) : '' }} <i *ngIf="valuesAreIcons" [class]="mapValue(val, valuesMap.label)"></i>
           </label>
         </ng-container>
       </div>
