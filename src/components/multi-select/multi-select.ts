@@ -74,6 +74,9 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
   /** Whether the field is readonly */
   @Input() isReadOnly: boolean;
 
+  /** Whether this is a single select search */
+  @Input() isSingleSelect: boolean;
+
   /** Show ungrouped list provided by outer component */
   @Input() showUngroupedList: boolean;
 
@@ -134,16 +137,19 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
    * @param input  HTML Input element
    */
   add(item: T, input: any) {
-    if (!this.rawSelectedItems) {
-      this.rawSelectedItems = [];
+    if (this.isSingleSelect) {
+      this.onChangeCallback(item as any);
+    } else {
+      if (!this.rawSelectedItems) {
+        this.rawSelectedItems = [];
+      }
+
+      this.rawSelectedItems.push(item);
+      this.selectedItems.push(this.mapValue(item, this.valueMap));
+      this.onChangeCallback(this.selectedItems);
     }
 
-    this.rawSelectedItems.push(item);
-    this.selectedItems.push(this.mapValue(item, this.valueMap));
-
     input.value = '';
-
-    this.onChangeCallback(this.selectedItems);
     this.closeLists();
   }
 

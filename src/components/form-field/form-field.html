@@ -20,6 +20,7 @@
                       [column]="column"
                       [placeholder]="placeholder"
                       [hasDefaultList]="hasDefaultList"
+                      [isSingleSelect]="isSingleSelect"
                       [showUngroupedList]="showUngroupedList"
                       [defaultListText]="defaultListText"
                       [defaultListGroups]="defaultListGroups"
@@ -67,6 +68,7 @@
     <ng-container *ngSwitchCase="'date'">
       <dp-date-picker 
         #datePicker
+        class="form-control"
         [(ngModel)]="value"
         [displayDate]="value"
         (close)="validate()"
@@ -82,6 +84,7 @@
     <ng-container *ngSwitchCase="'daytime'">
       <dp-date-picker 
         #datePicker
+        class="form-control"
         [(ngModel)]="value"
         [displayDate]="value"
         (close)="validate()"
@@ -125,7 +128,7 @@
 
     <div *ngIf="affix" class="input-group-addon">{{ affix }}</div>
 
-    <div *ngIf="type === 'date' || type === 'daytime'" class="input-group-addon" (click)="openCalendar()"><i class="fa fa-calendar"></i></div>
+    <div *ngIf="type === 'date' || type === 'daytime'" class="input-group-addon d-flex align-items-center" (click)="openCalendar()"><i class="fa fa-calendar"></i></div>
 
     <ng-container *ngIf="errors && errors.length > 0">
       <div class="form-control-feedback" *ngFor="let error of errors">

@@ -107,6 +107,9 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
   /** The number of columns to display the mulit-select default list */
   @Input() column: number;
 
+  /** Whether this is a single select search */
+  @Input() isSingleSelect: boolean;
+
   /** Hide  the selected items for multi-select */
   @Input() hideSelectedItems: boolean;
 
