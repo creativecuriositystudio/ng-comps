@@ -23,6 +23,7 @@
     "moment": "^2.22.0",
     "ng2-date-picker": "git+https://github.com/sorakthunly/angular-datepicker-bin.git",
     "ng2-inline-template": "^0.1.1",
+    "ngx-color-picker": "^6.3.3",
     "popper.js": "^1.14.3",
     "ts-node": "^6.0.0",
     "typescript": "^2.6.2",

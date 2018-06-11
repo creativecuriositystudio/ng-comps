@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DpDatePickerModule } from 'ng2-date-picker';
+import { ColorPickerModule } from 'ngx-color-picker';
 import * as components from './components';
 import * as pipes from './pipes';
 
@@ -15,6 +16,7 @@ import * as pipes from './pipes';
     FormsModule,
     NgbModule,
     DpDatePickerModule,
+    ColorPickerModule,
   ],
 
   declarations: [
