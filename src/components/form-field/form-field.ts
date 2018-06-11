@@ -28,6 +28,7 @@ const TypeCheckers = [
 @Component({
   selector: 'arvo-form-field',
   templateUrl: './form-field.html',
+  styleUrls: ['./form-field.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => FormFieldComponent),
