@@ -125,9 +125,9 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'colour'">
-      <div class="d-flex justify-content-start">
+      <div class="d-flex justify-content-start align-items-center">
         <input (blur)="validate()" [(ngModel)]="value" [name]="name" type="text" class="form-control col-4" [placeholder]="placeholder || ''" [readonly]="isReadOnly">
-        <input class="colour-dot" [(colorPicker)]="value" [name]="name" [style.background]="value"
+        <input class="colour-dot ml-2" [(colorPicker)]="value" [name]="name" [style.background]="value" [style.cursor]="'pointer'" readonly
           [cpPositionRelativeToArrow]="true" cpAlphaChannel="always"/>
       </div>
     </ng-container>
