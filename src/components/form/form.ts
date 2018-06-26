@@ -111,6 +111,11 @@ export interface FormField<T> {
   typeAhead?(text: string): Promise<T[]>;
 }
 
+export interface ConstraintError {
+  field: string;
+  message: string[];
+}
+
 /**
  * Provides the base functionality and layout for a form screen.
  */
@@ -162,32 +167,26 @@ export class FormComponent implements OnInit {
   /** Hide the save button */
   @Input() hideSave: boolean;
 
-  /** A function to call before saving the data */
-  @Input() beforeSave: () => void;
-
-  /** Will prevent the save call being made by rest */
-  @Input() blockSave: boolean;
-
-  /** A function to call before cancel the edit */
-  @Input() beforeCancel: () => void;
-
   /** Will prevent the edit call */
   @Input() blockCancel: boolean;
+
+  /** Constraint errors that can't be displayed */
+  @Input() constraintErrors: ConstraintError[] = [];
+
+  /** Error message returned from the backend */
+  @Input() error: string;
 
   /** Hook called when value is selected */
   @Output() onSelect?: EventEmitter<any> = new EventEmitter();
 
+  /** Hook called when the form needs to be saved */
+  @Output() save: EventEmitter<boolean> = new EventEmitter();
+
+  /** Hook called before cancel */
+  @Input() beforeCancel: EventEmitter<boolean> = new EventEmitter();
+
   /** Whether the form is being saved. */
   isSaving = false;
-
-  /** An error message returned from the backend. */
-  error?: string;
-
-  /** Any field errors returned from the backend. */
-  errors: any = {};
-
-  /** Constraint errors that can't be displayed */
-  constraintErrors: { field: string; message: string[]; }[] = [];
 
   /** Constructs this component */
   constructor(private location: Location) {}
@@ -203,68 +202,19 @@ export class FormComponent implements OnInit {
   }
 
   /** Saves the form data */
-  async save() {
+  async onSave() {
     this.isSaving = true;
-    this.constraintErrors = [];
 
-    if (this.beforeSave) await this.beforeSave();
-
-    // FIXME move this into parent
-    /*
-    try {
-      if (!this.blockSave) {
-        let task = await this.rest.save(this.model, this.data, { idPath: this.saveByPath || 'id' });
-        this.router.navigate(
-          [this.data.id ? '../..' : '..', this.redirectByPath ? task[this.redirectByPath] : task.id],
-          { relativeTo: this.route }
-        );
-      }
-    } catch (err) {
-      if (err.errors) {
-        this.errors = (err as RESTError).errors || {};
-      }
-
-      // Show the relevant error message
-      this.error = this.handleErrorMessage(err);
-      if (!this.error) this.error = err.message;
-    }
-    */
-
-    let constraintErrors = this.errors.$constraints as any;
-    if (constraintErrors && _.size(constraintErrors) > 0) {
-      _.each(constraintErrors, (value, key) => {
-        this.constraintErrors.push({
-          field: _.upperCase(key),
-          message: value.map((v: any) => _.startCase(v.message))
-        });
-      });
-    }
+    this.save.emit(true);
 
     this.isSaving = false;
-  }
-
-  /** Handles the error message from the backend, returning either a 'pretty print' version or the message */
-  handleErrorMessage(error: any) {
-    try {
-      let errs = [];
-
-      for (let i = 0; i < _.values(error.errors).length; ++i) {
-        errs[i] = [
-          _.startCase(Object.keys(error.errors)[i]),
-          _.values(error.errors)[i].map((e: any) => _.lowerCase(e.message)).join(' and ')
-        ].join(' ');
-      }
-      return errs.join('. ');
-    } catch (err) {
-      return error.message;
-    }
   }
 
   /**
    * Cancel saving the model data and navigate back.
    */
   async cancel() {
-    if (this.beforeCancel) await this.beforeCancel();
+    this.beforeCancel.emit(true);
     if (!this.blockCancel) this.location.back();
   }
 }

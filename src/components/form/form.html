@@ -16,7 +16,7 @@
 <div class="row mt-3 mb-3">
   <div class="col-12 text-right">
     <button *ngIf="!hideCancel" [disabled]="isSaving" (click)="cancel()" class="btn btn-grey">{{ cancelLabel || 'Cancel' }}</button>
-    <button *ngIf="!hideSave" [disabled]="isSaving" (click)="save()" class="btn {{ saveBtnClass || 'btn-tertiary' }}">
+    <button *ngIf="!hideSave" [disabled]="isSaving" (click)="onSave()" class="btn {{ saveBtnClass || 'btn-tertiary' }}">
       {{ saveLabel || 'Save' }}
     </button>
   </div>
