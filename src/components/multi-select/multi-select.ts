@@ -1,8 +1,7 @@
 import { Component, HostListener, ElementRef, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Subject } from 'rxjs';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/do';
+import { debounceTime } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 /** Default list group fields */
@@ -100,7 +99,7 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
 
   /** Construct this component */
   constructor(private elementRef: ElementRef) {
-    this.searchTerm$.debounceTime(500)
+    this.searchTerm$.pipe(debounceTime(500))
       .subscribe(async (term: string) => {
         this.resultItems = await this.typeAhead(term);
         this.showDefaultList = false;
