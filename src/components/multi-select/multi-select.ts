@@ -128,8 +128,10 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
 
   /** Write value to the selected items */
   writeValue(value: T[]) {
-    this.rawSelectedItems = value ? value : [];
-    this.selectedItems = this.rawSelectedItems.map(i => this.mapValue(i, this.valueMap));
+    if (!this.isSingleSelect) {
+      this.rawSelectedItems = value ? value : [];
+      this.selectedItems = this.rawSelectedItems.map(i => this.mapValue(i, this.valueMap));
+    }
   }
 
   /**
