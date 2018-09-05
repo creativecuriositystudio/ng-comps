@@ -55,9 +55,6 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
   /** Default placeholder */
   @Input() placeholder: string;
 
-  /** Emit an event when the search is complete */
-  @Output() onSearchComplete: EventEmitter<T[]> = new EventEmitter();
-
   /** Whether the selected  items should be hidden */
   @Input() hideSelectedItems: boolean;
 
@@ -96,6 +93,12 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
 
   /** The label map for determining how to display a given item */
   @Input() valueMap: string | ((val: any) => any) = i => i;
+
+  /** Emit an event when the search is complete */
+  @Output() onSearchComplete: EventEmitter<T[]> = new EventEmitter();
+
+  /** Emit an event after an item is selected by the user */
+  @Output() onItemSelect: EventEmitter<T> = new EventEmitter();
 
   /** Construct this component */
   constructor(private elementRef: ElementRef) {
@@ -149,6 +152,7 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
     }
 
     input.value = '';
+    this.onItemSelect.emit(item);
     this.closeLists();
   }
 
