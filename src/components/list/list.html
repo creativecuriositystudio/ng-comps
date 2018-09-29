@@ -1,29 +1,28 @@
 <div class="arvo-list">
-  <h1 class="mb-4 font-weight-bold text-primary-dark">{{ title }}</h1>
-  <div class="arvo-page-title mt-2">
+  <h1 *ngIf="title" class="my-4 font-weight-bold text-primary-dark">{{ title }}</h1>
+  <div class="arvo-page-title">
     <div class="row">
       <div class="col-md-6">
-        <select (change)="refresh(itemsPerPage)" [(ngModel)]="itemsPerPage" class="w-auto flexible-form">
-          <option *ngFor="let num of rowsPerPage" [ngValue]="num">{{num}}</option>
-        </select>
-        <span>records per page</span>
+        <div class="search-input-wrapper d-flex justify-content-start align-items-center mb-3">
+          <input type="text" class="form-control search-input-form" placeholder="Search a term...">
+          <button class="btn btn-tertiary search-input-button">Search</button>
+        </div>
+        <div class="d-flex justify-content-start mb-3" *ngFor="let query of searchQueries; let i = index">
+          <select [(ngModel)]="query.path" class="column-item-select">
+            <option *ngFor="let column of columns" [ngValue]="column.field">{{ column.label }}</option>
+          </select>
+          <span><i class="fa fa-chevron-right mx-1"></i></span>
+          <select [(ngModel)]="query.operator" class="search-filter-select">
+            <option *ngFor="let filter of filterTypes" [ngValue]="filter.key">{{ filter.label }}</option>
+          </select>
+          <span><i class="fa fa-chevron-right mx-1"></i></span>
+          <input [(ngModel)]="query.firstValue" type="text" class="form-control search-filter-input">
+          <input *ngIf="query.operator === 'between'" [(ngModel)]="query.secondValue" type="text" class="form-control search-filter-input">
+        </div>
+        <button class="btn btn-primary" (click)="addSearchQuery()">Add Another</button>
       </div>
 
       <div class="col-md-6 text-right">
-        <input [ngModel]="searchText" (ngModelChange)="search($event)" type="text" [placeholder]="searchPlaceholder || 'Name'" class="flexible-form">
-        <button class="btn btn-white "><i class="fa fa-search" aria-hidden="true"></i> Search</button>
-        <div class="btn-group">
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-white" id="filterDropdown" ngbDropdownToggle>
-              <i class="fa fa-star" aria-hidden="true"></i> Filter
-            </button>
-            <div ngbDropdownMenu aria-labelledby="filterDropdown">
-               <button class="dropdown-item">Action - 1</button>
-               <button class="dropdown-item">Another Action</button>
-               <button class="dropdown-item">Something else is here</button>
-             </div>
-          </div>
-        </div>
         <button *ngIf="addPath" class="btn btn-primary" [routerLink]="addPath">{{ addLabel }}</button>
       </div>
     </div>
@@ -33,7 +32,7 @@
     <div class="arvo-list-container py-4">
       <ng-content></ng-content>
 
-      <div class="arvo-list-body bg-white py-3 px-2">
+      <div class="arvo-list-body">
         <arvo-table [rows]="data"
                    [columns]="columns"
                    [actions]="rowActions"
@@ -43,7 +42,13 @@
         </arvo-table>
 
         <div *ngIf="showPagination" class="row mt-3">
-          <div class="offset-6 col-6">
+          <div class="col-md-6">
+            <select (change)="refresh(itemsPerPage)" [(ngModel)]="itemsPerPage" class="w-auto flexible-form">
+              <option *ngFor="let num of rowsPerPage" [ngValue]="num"><span class="font-weight-bold">{{num}}</span> results per page</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
             <ul class="pagination pull-right">
               <li (click)="prevPage()" class="page-item rounded-left c-pointer">
                 <a class="page-link">&laquo;</a>

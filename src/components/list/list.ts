@@ -45,6 +45,12 @@ export interface SelectAction {
   action(_?: any): any;
 }
 
+/** Helper interface for the filter data */
+export interface SearchFilter {
+  label: string;
+  key: string;
+}
+
 /** Action to perform for the whole list */
 export interface Action {
   /** The label of the action, in HTML. */
@@ -56,6 +62,14 @@ export interface Action {
   /** Action to be performed when clicked */
   do(event: any): any;
 }
+
+/** Search query data type */
+export class SearchQuery {
+  path?: string;
+  operator?: string;
+  firstValue?: string;
+  secondValue?: string;
+} 
 
 /**
  * Provides the base functionality and layout for a list screen.
@@ -165,6 +179,21 @@ export class ListComponent implements OnInit, OnChanges {
   /** The field being sorted */
   sortedField: SortField;
 
+  /** List of fitler types */
+  filterTypes: SearchFilter[] = [
+    { label: 'Equals', key: 'eq' },
+    { label: 'Not equals', key: 'ne' },
+    { label: 'Contains', key: 'like' },
+    { label: 'Greater than', key: 'gt' },
+    { label: 'Greater than or equal', key: 'gte' },
+    { label: 'Less than', key: 'lt' },
+    { label: 'Less than or equal', key: 'lte' },
+    { label: 'Between', key: 'between' }
+  ];
+
+  /** List of search queries */
+  searchQueries: SearchQuery[] = [];
+
   /** Update display items */
   ngOnInit() {
     this.initList();
@@ -187,6 +216,11 @@ export class ListComponent implements OnInit, OnChanges {
         this.numPages = pagination.numPages;
       }
     }
+  }
+
+  /** Add a new search query */
+  addSearchQuery() {
+    this.searchQueries.push(new SearchQuery());
   }
 
   /** A list of page numbers to display. */

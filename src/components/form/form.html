@@ -1,4 +1,4 @@
-<h1 class="mb-3 font-weight-bold text-primary-dark">{{ title }}</h1>
+<h1 *ngIf="title" class="mb-3 font-weight-bold text-primary-dark">{{ title }}</h1>
 
 <ng-content></ng-content>
 
@@ -16,7 +16,7 @@
 <div class="row mt-3 mb-3">
   <div class="col-12 text-right">
     <button *ngIf="!hideCancel" [disabled]="isSaving" (click)="cancel()" class="btn btn-grey">{{ cancelLabel || 'Cancel' }}</button>
-    <button *ngIf="!hideSave" [disabled]="isSaving" (click)="onSave()" class="btn {{ saveBtnClass || 'btn-tertiary' }}">
+    <button *ngIf="!hideSave" [disabled]="isSaving" (click)="onSave()" class="btn {{ saveBtnClass || 'btn-tertiary' }} mr-3">
       {{ saveLabel || 'Save' }}
     </button>
   </div>
