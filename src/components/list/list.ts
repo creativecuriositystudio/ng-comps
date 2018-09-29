@@ -12,25 +12,7 @@ export interface ChangeResponse {
   itemsPerPage: number;
   currentPage: number;
   sortedField?: SortField;
-}
-
-/** Helper interface to implement the macro breakdown filter UI */
-export interface BreakdownFilterMeta {
-  title: string;
-  model: string;
-  lower?: number;
-  upper?: number;
-  selectOptions?: string[];
-  selected?: string;
-}
-
-/** Helper interface allowing the data to be filtered based on macro breakdown values */
-export interface HasMacroBreakdown {
-  fatPercent: number;
-  carbsPercent: number;
-  proteinPercent: number;
-  totalCalories: number;
-  servingSize: number;
+  searchQueuries?: SearchQuery[];
 }
 
 /** Helper interface for value emitted to outter component when a new page number is selected */
@@ -120,16 +102,28 @@ export class ListComponent implements OnInit, OnChanges {
   @Input() addLabel: string;
 
   /** Perform search by the outter component */
-  @Input() doSearch: (model: ModelConstructor<Model>, text: string, count: number) => Promise<(Model & HasMacroBreakdown)[]>;
-
-  /** Perform search filtering based on the breakdown filter meta data */
-  @Input() doFilterByBreakdown: (filter: BreakdownFilterMeta[]) => Promise<(Model & HasMacroBreakdown)[]>;
+  @Input() doSearch: (model: ModelConstructor<Model>, text: string, count: number) => Promise<Model[]>;
 
   /** Edit action on the list --- will have archive and so on in the future */
   @Input() multiActions: SelectAction[];
 
   /** The action selected after items are highlighted */
   @Input() selectedAction: SelectAction;
+
+  /** List of filterable search columns */
+  @Input() searchFilters: TableColumn<Model>[] = [];
+
+  /** List of fitler types */
+  @Input() filterTypes: SearchFilter[] = [
+    { label: 'Equals', key: 'eq' },
+    { label: 'Not equals', key: 'ne' },
+    { label: 'Contains', key: 'like' },
+    { label: 'Greater than', key: 'gt' },
+    { label: 'Greater than or equal', key: 'gte' },
+    { label: 'Less than', key: 'lt' },
+    { label: 'Less than or equal', key: 'lte' },
+    { label: 'Between', key: 'between' }
+  ];
 
   /** Emits when user chooses the number of items to display per page */
   @Output() onRefresh: EventEmitter<ChangeResponse> = new EventEmitter();
@@ -167,9 +161,6 @@ export class ListComponent implements OnInit, OnChanges {
   /** The current page navigated to. */
   currentPage = 1;
 
-  /** Whether advanced search filters are being entered. */
-  isFiltering = false;
-
   /** The observable version of the search */
   searchTerm$ = new Subject<string>();
 
@@ -178,18 +169,6 @@ export class ListComponent implements OnInit, OnChanges {
 
   /** The field being sorted */
   sortedField: SortField;
-
-  /** List of fitler types */
-  filterTypes: SearchFilter[] = [
-    { label: 'Equals', key: 'eq' },
-    { label: 'Not equals', key: 'ne' },
-    { label: 'Contains', key: 'like' },
-    { label: 'Greater than', key: 'gt' },
-    { label: 'Greater than or equal', key: 'gte' },
-    { label: 'Less than', key: 'lt' },
-    { label: 'Less than or equal', key: 'lte' },
-    { label: 'Between', key: 'between' }
-  ];
 
   /** List of search queries */
   searchQueries: SearchQuery[] = [];
@@ -243,7 +222,8 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: num,
       currentPage: this.currentPage,
       searchText: this.searchText,
-      sortedField: this.sortedField
+      sortedField: this.sortedField,
+      searchQueuries: this.searchQueries
     };
 
     this.onRefresh.emit(response);
@@ -257,7 +237,8 @@ export class ListComponent implements OnInit, OnChanges {
         itemsPerPage: this.itemsPerPage,
         currentPage: this.currentPage,
         searchText: this.searchText,
-        sortedField: this.sortedField
+        sortedField: this.sortedField,
+        searchQueuries: this.searchQueries
       };
 
       this.onPageChange.emit(response);
@@ -273,7 +254,8 @@ export class ListComponent implements OnInit, OnChanges {
         itemsPerPage: this.itemsPerPage,
         currentPage: this.currentPage,
         searchText: this.searchText,
-        sortedField: this.sortedField
+        sortedField: this.sortedField,
+        searchQueuries: this.searchQueries
       };
 
       this.onPageChange.emit(response);
@@ -288,7 +270,8 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.currentPage,
       searchText: this.searchText,
-      sortedField: this.sortedField
+      sortedField: this.sortedField,
+      searchQueuries: this.searchQueries
     };
 
     this.onPageChange.emit(response);
@@ -313,7 +296,8 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.currentPage,
       searchText: this.searchTerm$,
-      sortedField: this.sortedField
+      sortedField: this.sortedField,
+      searchQueuries: this.searchQueries
     };
 
     this.sortHeader.emit(response);
@@ -325,13 +309,9 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.currentPage,
       searchText: this.searchTerm$,
-      sortedField: this.sortedField
+      sortedField: this.sortedField,
+      searchQueuries: this.searchQueries
     };
-  }
-
-  /** Toggle whether advanced filters are shown. */
-  toggleFiltering() {
-    this.isFiltering = !this.isFiltering;
   }
 
   /** Emits a search string as an observable subject to the parent component */
@@ -343,7 +323,8 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.currentPage,
       searchText: this.searchTerm$,
-      sortedField: this.sortedField
+      sortedField: this.sortedField,
+      searchQueuries: this.searchQueries
     };
 
     this.onSearch.emit(response);
