@@ -315,9 +315,8 @@ export class ListComponent implements OnInit, OnChanges {
   }
 
   /** Emits a search string as an observable subject to the parent component */
-  async search(value: string) {
-    this.searchText = value;
-    this.searchTerm$.next(value);
+  async search() {
+    this.searchTerm$.next(this.searchText);
 
     const response: ChangeResponse = {
       itemsPerPage: this.itemsPerPage,
