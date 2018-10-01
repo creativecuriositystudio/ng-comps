@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormFieldMap } from '../form-field/form-field';
 import * as _ from 'lodash';
 
 /** A column in the table. */
@@ -28,7 +29,11 @@ export interface TableColumn<T> {
 /** A table header that can be sorted */
 export interface SortField {
   name: string;
+  type?: string;
   reverse?: boolean;
+  placeholder?: string;
+  values?: any[] | Promise<any[]>;
+  valuesMap?: FormFieldMap;
 }
 
 /** An input box on a table column */

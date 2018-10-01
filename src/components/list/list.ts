@@ -9,6 +9,7 @@ import { TableColumn, TableAction, SortField } from '../table/table';
 /** Helper interface for data emitted to the outter component on page change */
 export interface ChangeResponse {
   searchText: string | Subject<string>;
+  searchString: string;
   itemsPerPage: number;
   currentPage: number;
   sortedField?: SortField;
@@ -48,6 +49,7 @@ export interface Action {
 /** Search query data type */
 export class SearchQuery {
   path?: string;
+  field?: SortField;
   operator?: string;
   firstValue?: string;
   secondValue?: string;
@@ -73,6 +75,9 @@ export class ListComponent implements OnInit, OnChanges {
 
   /** The model instance data. */
   @Input() data: any[];
+
+  /** Whether the list screen has search filter */
+  @Input() hasSearchFilters: boolean;
 
   /** Specific fields to be used for text search */
   @Input() searchAttr: string;
@@ -118,6 +123,7 @@ export class ListComponent implements OnInit, OnChanges {
     { label: 'Equals', key: 'eq' },
     { label: 'Not equals', key: 'ne' },
     { label: 'Contains', key: 'like' },
+    { label: 'Not Contains', key: 'notLike' },
     { label: 'Greater than', key: 'gt' },
     { label: 'Greater than or equal', key: 'gte' },
     { label: 'Less than', key: 'lt' },
@@ -202,6 +208,12 @@ export class ListComponent implements OnInit, OnChanges {
     this.searchQueries.push(new SearchQuery());
   }
 
+  /** Remove a search query as selected */
+  removeSearchQuery(query: SearchQuery) {
+    let index = this.searchQueries.indexOf(query);
+    if (index > -1) this.searchQueries.splice(index, 1);
+  }
+
   /** A list of page numbers to display. */
   get pages(): number[] {
     return _.range(1, 1 + this.numPages);
@@ -222,6 +234,7 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: num,
       currentPage: this.currentPage,
       searchText: this.searchText,
+      searchString: this.searchText,
       sortedField: this.sortedField,
       searchQueuries: this.searchQueries
     };
@@ -237,6 +250,7 @@ export class ListComponent implements OnInit, OnChanges {
         itemsPerPage: this.itemsPerPage,
         currentPage: this.currentPage,
         searchText: this.searchText,
+        searchString: this.searchText,
         sortedField: this.sortedField,
         searchQueuries: this.searchQueries
       };
@@ -254,6 +268,7 @@ export class ListComponent implements OnInit, OnChanges {
         itemsPerPage: this.itemsPerPage,
         currentPage: this.currentPage,
         searchText: this.searchText,
+        searchString: this.searchText,
         sortedField: this.sortedField,
         searchQueuries: this.searchQueries
       };
@@ -270,6 +285,7 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.currentPage,
       searchText: this.searchText,
+      searchString: this.searchText,
       sortedField: this.sortedField,
       searchQueuries: this.searchQueries
     };
@@ -296,6 +312,7 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.currentPage,
       searchText: this.searchTerm$,
+      searchString: this.searchText,
       sortedField: this.sortedField,
       searchQueuries: this.searchQueries
     };
@@ -309,6 +326,7 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.currentPage,
       searchText: this.searchTerm$,
+      searchString: this.searchText,
       sortedField: this.sortedField,
       searchQueuries: this.searchQueries
     };
@@ -322,6 +340,7 @@ export class ListComponent implements OnInit, OnChanges {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.currentPage,
       searchText: this.searchTerm$,
+      searchString: this.searchText,
       sortedField: this.sortedField,
       searchQueuries: this.searchQueries
     };
