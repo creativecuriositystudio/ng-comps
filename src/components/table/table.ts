@@ -103,7 +103,7 @@ export class TableComponent {
   @Output() select: EventEmitter<any> = new EventEmitter();
 
   /** Emits when a table header is clicked */
-  @Output() sortHeader: EventEmitter<string> = new EventEmitter();
+  @Output() sortHeader: EventEmitter<SortField> = new EventEmitter();
 
   /** On row checkbox update, emit an event to the outer component */
   @Output() rowCheckboxChange: EventEmitter<any> = new EventEmitter();
@@ -120,8 +120,9 @@ export class TableComponent {
   }
 
   /** Listen to when a header column is clicked */
-  onHeaderSelect(field: string) {
+  onHeaderSelect(field: SortField) {
     this.sortHeader.emit(field);
+    field.reverse = !field.reverse;
   }
 
   /** Check whether a given value is an array */
