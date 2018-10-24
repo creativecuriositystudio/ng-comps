@@ -5,7 +5,7 @@
       <div class="col-md-6">
         <ng-template [ngIf]="hasSearchFilters">
           <div class="search-input-wrapper d-flex justify-content-start align-items-center mb-3">
-            <input (input)="search()" type="text" [(ngModel)]="searchText" class="form-control search-input-form" placeholder="Search a term...">
+            <input (input)="search()" type="text" [(ngModel)]="searchText" class="form-control search-input-form" [placeholder]="searchPlaceholder || 'Search a term...'">
             <button class="btn btn-tertiary search-input-button ml-2" (click)="search()">Search<i class="fa fa-search ml-2"></i></button>
           </div>
           <div class="d-flex justify-content-start align-items-center" *ngFor="let query of searchQueries; let i = index">
@@ -51,6 +51,57 @@
       <ng-content></ng-content>
 
       <div class="arvo-list-body">
+        <div *ngIf="showPagination" class="row mb-3">
+          <div class="col-md-6 align-self-center">
+            <select (change)="refresh(itemsPerPage)" [(ngModel)]="itemsPerPage" class="form-control w-auto flexible-form mb-2">
+              <option *ngFor="let num of rowsPerPage" [ngValue]="num"><span class="font-weight-bold">{{num}}</span> results per page</option>
+            </select>
+            <p *ngIf="numItems > 0" class="font-weight-bold mb-0">Showing {{ 0 + ((currentPage - 1) * itemsPerPage) }} - {{ currentPage * itemsPerPage }} of {{ numItems }} items</p>
+          </div>
+
+          <div class="col-md-6">
+            <ul class="pagination pull-right">
+              <li (click)="prevPage()" class="page-item rounded-left c-pointer">
+                <a class="page-link">&laquo;</a>
+              </li>
+
+              <ng-template [ngIf]="pages.length < 5">
+                <li (click)="selectPage(num)" class="page-item c-pointer" *ngFor="let num of pages" [ngClass]="{ active: num === currentPage }">
+                  <a class="page-link">{{num}}</a>
+                </li>
+              </ng-template>
+
+              <ng-template [ngIf]="pages.length >= 5">
+                <li (click)="selectPage(1)" class="page-item c-pointer" *ngIf="numPages !== 1 && currentPage !== 1">
+                  <a class="page-link">1</a>
+                </li>
+
+                <li (click)="selectPage(currentPage - 1)" class="page-item c-pointer" *ngIf="currentPage > 2">
+                  <a class="page-link">{{ currentPage - 1 }}</a>
+                </li>
+
+                <li (click)="selectPage(currentPage)" class="page-item c-pointer active">
+                  <a class="page-link">{{ currentPage }}</a>
+                </li>
+
+                <li (click)="selectPage(currentPage + 1)" class="page-item c-pointer" *ngIf="numPages - currentPage > 1">
+                  <a class="page-link">{{ currentPage + 1 }}</a>
+                </li>
+
+                <li (click)="selectPage(numPages)" class="page-item c-pointer rounded-right" *ngIf="numPages - currentPage > 0">
+                  <a class="page-link">{{ numPages }}</a>
+                </li>
+              </ng-template>
+
+              <li (click)="nextPage()" class="page-item c-pointer">
+                <a class="page-link">&raquo;</a>
+              </li>
+            </ul>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
         <arvo-table [rows]="data"
                     [columns]="columns"
                     [actions]="rowActions"
@@ -60,10 +111,11 @@
         </arvo-table>
 
         <div *ngIf="showPagination" class="row mt-3">
-          <div class="col-md-6">
-            <select (change)="refresh(itemsPerPage)" [(ngModel)]="itemsPerPage" class="form-control w-auto flexible-form">
+          <div class="col-md-6 align-self-center">
+            <select (change)="refresh(itemsPerPage)" [(ngModel)]="itemsPerPage" class="form-control w-auto flexible-form mb-2">
               <option *ngFor="let num of rowsPerPage" [ngValue]="num"><span class="font-weight-bold">{{num}}</span> results per page</option>
             </select>
+            <p *ngIf="numItems > 0" class="font-weight-bold mb-0">Showing {{ 0 + ((currentPage - 1) * itemsPerPage) }} - {{ currentPage * itemsPerPage }} of {{ numItems }} items</p>
           </div>
 
           <div class="col-md-6">

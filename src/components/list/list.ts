@@ -158,6 +158,9 @@ export class ListComponent implements OnInit, OnChanges {
   /** The number of pages to display. */
   numPages = 1;
 
+  /** The number of total items */
+  numItems = 0;
+
   /** The possible row per page amounts. */
   rowsPerPage = _.range(10, 50, 10).concat(_.range(50, 101, 25));
 
@@ -199,6 +202,7 @@ export class ListComponent implements OnInit, OnChanges {
 
       if (pagination) {
         this.numPages = pagination.numPages;
+        this.numItems = pagination.numItems;
       }
     }
   }
