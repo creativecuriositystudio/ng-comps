@@ -107,7 +107,7 @@ export class MultiSelectComponent<T> implements ControlValueAccessor {
         this.resultItems = await this.typeAhead(term);
         this.showDefaultList = false;
         this.showResultList = this.resultItems.length > 0 ? true : false;
-        if (this.showResultList) this.onSearchComplete.emit(this.resultItems);
+        this.onSearchComplete.emit(this.resultItems);
       });
   }
 
