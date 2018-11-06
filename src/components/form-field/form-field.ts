@@ -1,8 +1,7 @@
 import * as _ from 'lodash';
-import * as moment from 'moment';
 import * as validator from 'validator';
 
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges, forwardRef, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { PercentPipe } from '@angular/common';
 import { DefaultListGroup } from '../multi-select/multi-select';
