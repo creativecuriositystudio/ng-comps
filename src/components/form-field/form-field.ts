@@ -18,8 +18,6 @@ const TypeCheckers = [
   { type: 'percent', error: 'Field is not a valid percentage', validate: (value: any) => _.isNumber(value) },
   { type: 'integer', error: 'Field is not an integer', validate: (value: any) => _.isInteger(value) },
   { type: 'email', error: 'Field is not a valid email', validate: (value: any) => validator.isEmail(value) },
-  { type: 'date', error: 'Field format must be dd/mm/yyyy', validate: (value: any) => moment(value).isValid() },
-  { type: 'daytime', error: 'Field format must be dd/mm/yyyy hh:mm a', validate: (value: any) => moment(value).isValid() },
 ];
 
 /**
@@ -41,9 +39,6 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
 
   /** Emit an event when the multi-select search is complete */
   @Output() onSearchComplete: EventEmitter<any[]> = new EventEmitter();
-
-  /** Determines what date picker window to select */
-  @ViewChild('datePicker') datePickerElement: any;
 
   /** The typeahead query to get the result items by string */
   @Input() typeAhead: (text: string) => Promise<any[]>;
@@ -98,9 +93,6 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
 
   /** The error message to display, if any */
   @Input() errors?: { message: string }[];
-
-  /** The format the date output type should be */
-  @Input() dateOutputType?: 'string' | 'date' | 'moment' = 'date';
 
   /** Validate the value with the regex field */
   @Input() regex?: string;
@@ -161,12 +153,7 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
     if (!this.isValueRetrieved) return;
 
     // Save new value to inner value
-    switch (this.type) {
-      // Prevent a lock-up with the datepicker in the event it returns a non-moment value (ie. it returns a value it can't handle itself...)
-      case 'date':
-      case 'daytime': if (moment.isMoment(val)) this.innerValue = val; break;
-      default: this.innerValue = val;
-    }
+    this.innerValue = val;
 
     // Convert the inner value to the model format before emitting
     let convertedValue = val;
@@ -175,8 +162,6 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
       case 'cents': convertedValue = this.toCents(val); break;
       case 'number': convertedValue = val && validator.isFloat(val) ? Number(val) : val; break;
       case 'integer': convertedValue = val && validator.isNumeric(val) ? Number(val) : val; break;
-      case 'date':
-      case 'daytime': convertedValue = this.formatDateOutput(val); break;
     }
 
     // Emit model value if it's not the same as before
@@ -192,8 +177,6 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
 
     switch (this.type) {
       case 'percent': val = this.toPercent(val); break;
-      case 'date': val = val ? moment.utc(val).startOf('day') : null; break;
-      case 'daytime': val = val ? moment(val) : null; break;
     }
 
     this.innerValue = val;
@@ -208,18 +191,6 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
   /** Prepare values */
   ngOnChanges() {
     this.prepareValues();
-  }
-
-  /** Formats the date output */
-  protected formatDateOutput(value: moment.Moment) {
-    if (!value) return null;
-
-    if (this.type === 'date') value = moment(value).utc(true).startOf('day');
-    else value = moment(value);
-
-    return this.dateOutputType === 'moment' ? value :
-      this.dateOutputType === 'string' ? value.toISOString() :
-      value.toDate();
   }
 
   /** If the values are still loading, indicate to the user and show them the values once ready */
@@ -277,12 +248,6 @@ export class FormFieldComponent implements OnInit, OnChanges, ControlValueAccess
   /** Update the select value and emit the name of the input */
   updateFile(event: any) {
     this.onSelect.emit(event.srcElement.files);
-  }
-
-  /** Opens the date picker window */
-  openCalendar() {
-    if (this.isReadOnly) return;
-    this.datePickerElement.api.open();
   }
 
   /** Convert from backend percent format to human format */

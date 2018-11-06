@@ -1,6 +1,6 @@
 {
   "name": "@creativecuriosityau/ng-comps",
-  "version": "0.1.72",
+  "version": "0.1.73",
   "description": "Collection of common Angular TS components",
   "keywords": [
     "typescript",
@@ -22,7 +22,6 @@
     "jquery": "^3.3.1",
     "lodash": "^4.17.5",
     "moment": "^2.22.0",
-    "ng2-date-picker": "git+https://github.com/sorakthunly/angular-datepicker-bin.git",
     "ng2-inline-template": "^0.1.1",
     "ngx-color-picker": "^6.3.3",
     "popper.js": "^1.14.3",
