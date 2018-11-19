@@ -149,6 +149,9 @@ export class ListComponent implements OnInit, OnChanges {
   /** On row checkbox update, emit an event to the outer component */
   @Output() rowCheckboxChange: EventEmitter<any> = new EventEmitter();
 
+  /** Emits when a searchQuery is added or removed */
+  @Output() searchQueryChange: EventEmitter<any> = new EventEmitter();
+
   /** Callback for receiving the data items when the list changes */
   public onChangeCallback: (_: any[]) => void;
 
@@ -210,12 +213,14 @@ export class ListComponent implements OnInit, OnChanges {
   /** Add a new search query */
   addSearchQuery() {
     this.searchQueries.push(new SearchQuery());
+    this.searchQueryChange.emit(this.searchQueries);
   }
 
   /** Remove a search query as selected */
   removeSearchQuery(query: SearchQuery) {
     let index = this.searchQueries.indexOf(query);
     if (index > -1) this.searchQueries.splice(index, 1);
+    this.searchQueryChange.emit(this.searchQueries);
   }
 
   /** A list of page numbers to display. */
