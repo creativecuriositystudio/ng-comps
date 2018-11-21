@@ -149,8 +149,7 @@ export class ListComponent implements OnInit, OnChanges {
   /** On row checkbox update, emit an event to the outer component */
   @Output() rowCheckboxChange: EventEmitter<any> = new EventEmitter();
 
-  /** Emits when a searchQuery is added or removed */
-  @Output() searchQueryChange: EventEmitter<any> = new EventEmitter();
+  @Output() initFinish: EventEmitter<any> = new EventEmitter();
 
   /** Callback for receiving the data items when the list changes */
   public onChangeCallback: (_: any[]) => void;
@@ -188,6 +187,8 @@ export class ListComponent implements OnInit, OnChanges {
   /** Update display items */
   ngOnInit() {
     this.initList();
+    const currentOptions = this.getCurrentOptions();
+    this.initFinish.emit(currentOptions);
   }
 
   /** Update display items */
@@ -213,14 +214,12 @@ export class ListComponent implements OnInit, OnChanges {
   /** Add a new search query */
   addSearchQuery() {
     this.searchQueries.push(new SearchQuery());
-    this.searchQueryChange.emit(this.searchQueries);
   }
 
   /** Remove a search query as selected */
   removeSearchQuery(query: SearchQuery) {
     let index = this.searchQueries.indexOf(query);
     if (index > -1) this.searchQueries.splice(index, 1);
-    this.searchQueryChange.emit(this.searchQueries);
   }
 
   /** A list of page numbers to display. */
@@ -343,6 +342,12 @@ export class ListComponent implements OnInit, OnChanges {
 
   /** Emits a search string as an observable subject to the parent component */
   async search() {
+    const response = await this.getCurrentOptions();
+    this.onSearch.emit(response);
+  }
+
+  /** Returns the current response */
+  getCurrentOptions() {
     this.searchTerm$.next(this.searchText);
 
     const response: ChangeResponse = {
@@ -353,7 +358,6 @@ export class ListComponent implements OnInit, OnChanges {
       sortedField: this.sortedField,
       searchQueuries: this.searchQueries
     };
-
-    this.onSearch.emit(response);
+    return response;
   }
 }
