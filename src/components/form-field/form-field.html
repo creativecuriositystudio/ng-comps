@@ -1,5 +1,5 @@
-<div class="form-group d-flex align-items-center arvo-form-group" [ngClass]="{ 'has-danger': errors && errors.length > 0 }">
-  <label *ngIf="label" class="mb-0" [class.required]="isRequired">{{label}}</label>
+<div class="form-group arvo-form-group" [ngClass]="{ 'has-danger': errors && errors.length > 0 }">
+  <label *ngIf="label" class="mb-1" [class.required]="isRequired">{{label}}</label>
 
   <div [ngSwitch]="type" class="w-100 d-flex" [class.input-group]="prefix || affix">
     <div *ngIf="prefix" class="input-group-addon">{{ prefix }}</div>
@@ -93,7 +93,7 @@
 
     <ng-container *ngSwitchCase="'colour'">
       <div class="d-flex justify-content-start align-items-center">
-        <input (blur)="validate()" [(ngModel)]="value" [name]="name" type="text" class="form-control col-4" [placeholder]="placeholder || ''" [readonly]="isReadOnly">
+        <input (blur)="validate()" [(ngModel)]="value" [name]="name" type="text" class="form-control" [placeholder]="placeholder || ''" [readonly]="isReadOnly">
         <input class="colour-dot ml-2" [(colorPicker)]="value" [name]="name" [style.background]="value" [style.cursor]="'pointer'" readonly
           [cpPositionRelativeToArrow]="true" cpAlphaChannel="always"/>
       </div>
