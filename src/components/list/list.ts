@@ -141,7 +141,7 @@ export class ListComponent implements OnInit, OnChanges {
   @Output() onSearch: EventEmitter<ChangeResponse> = new EventEmitter();
 
   /** Emits events when a list item is selected. */
-  @Output() select: EventEmitter<Model> = new EventEmitter();
+  @Output() itemSelected: EventEmitter<Model> = new EventEmitter();
 
   /** Emits when a table header is clicked */
   @Output() sortHeader: EventEmitter<ChangeResponse> = new EventEmitter();
@@ -304,7 +304,8 @@ export class ListComponent implements OnInit, OnChanges {
 
   /** Listen to selections of a list item. */
   onSelect(item: Model) {
-    this.select.emit(item);
+    console.log('onSelect fired');
+    this.itemSelected.emit(item);
   }
 
   /** Update the checkbox and emits an event to the parent component */
@@ -342,6 +343,7 @@ export class ListComponent implements OnInit, OnChanges {
 
   /** Emits a search string as an observable subject to the parent component */
   async search() {
+    console.log('searching...');
     const response = await this.getCurrentOptions();
     this.onSearch.emit(response);
   }

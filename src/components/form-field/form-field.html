@@ -95,7 +95,7 @@
       <div class="d-flex justify-content-start align-items-center">
         <input (blur)="validate()" [(ngModel)]="value" [name]="name" type="text" class="form-control" [placeholder]="placeholder || ''" [readonly]="isReadOnly">
         <input class="colour-dot ml-2" [(colorPicker)]="value" [name]="name" [style.background]="value" [style.cursor]="'pointer'" readonly
-          [cpPositionRelativeToArrow]="true" cpAlphaChannel="always"/>
+          [cpPositionRelativeToArrow]="true" cpAlphaChannel="disabled"/>
       </div>
     </ng-container>
 
