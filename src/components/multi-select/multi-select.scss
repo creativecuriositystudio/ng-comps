@@ -23,12 +23,10 @@
   border: 2px solid #ebebeb;
 }
 
-.result-item {
-  &:hover {
-    background-color: #111;
-    color: white;
-    cursor: pointer;
-  }
+.result-item:hover {
+  background-color: #111;
+  color: white;
+  cursor: pointer;
 }
 
 .default-group-list {
